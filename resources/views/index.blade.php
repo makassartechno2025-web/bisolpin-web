@@ -12,9 +12,9 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-xl-7 col-lg-7">
                         <div class="banner-content pe-xxl-5" data-aos="fade-up">
-                        <span class="hero-title">Belajar Tanpa Batas Gapai Impianmu</span>
-                        <h1 class="mb-4 text-white">Platform <span>Bimbingan</span> & Solusi <span>Pintar</span> untuk Masa Depan Lebih Cerah</h1>
-                        <p class="fs-lg text-center text-md-start pb-2 pb-md-3 mb-4">Solusi pintar dalam menjawab soal-soal SNBT menuju Perguruan Tinggi Negeri atau Sekolah Kedinasan secara cepat dan tepat dengan bimbingan belajar secara digital.</p>
+                        <span class="hero-title">Selamat Datang Disitus BISOLPIN</span>
+                        <h1 class="mb-4 text-white">Metode Jitu <span>Bimbingan Belajar</span> Praktis, Efisien, Dan Komprehensif</h1>
+                        <p class="fs-lg text-center text-md-start pb-2 pb-md-3 mb-4 text-white">BISOLPIN adalah sebuah perangkat Sistem Edutech Terpadu yang digunakan dalam dunia pendidikan untuk mendukung proses pembelajaran dan bimbingan belajar secara digital bagi siswa dengan praktis, efisien dan komprehensif. Perangkat ini bisa digunakan oleh semua jenjang mulai dari tingkat TK, SD, SMP, SMA/SMK, Mahasiswa, Guru, Orang Tua Murid dan Umum.</p>
                         
                         <form class="banner-search" action="{{url('course-list')}}">
                             <div class="dropdown">
