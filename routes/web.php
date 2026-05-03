@@ -113,7 +113,7 @@ return view('help-center');
 
 Route::get('/index', function () {
 return view('index');
-})->name('index');
+})->name('index-html');
 
 Route::get('/instructor-chat', function () {
 return view('instructor-chat');
@@ -171,9 +171,9 @@ Route::get('/job-category', function () {
 return view('job-category');
 })->name('job-category');
 
-Route::get('/login', function () {
+Route::get('/login-view', function () {
 return view('login');
-})->name('login');
+})->name('login-view');
 
 Route::get('/new-password', function () {
 return view('new-password');
@@ -211,9 +211,9 @@ Route::get('/register-step-two', function () {
 return view('register-step-two');
 })->name('register-step-two');
 
-Route::get('/register', function () {
+Route::get('/register-view', function () {
 return view('register');
-})->name('register');
+})->name('register-view');
 
 Route::get('/setting-student-subscription', function () {
 return view('setting-student-subscription');
@@ -543,10 +543,3 @@ return view('student-certificates');
 Route::get('/about-us', function () {
     return view('about-us');
     })->name('about-us');
-    Route::get('/become-an-instructor', function () {
-        return view('become-an-instructor');
-        })->name('become-an-instructor');
-        Route::get('/instructor-statements', function () {
-            return view('instructor-statements');
-            })->name('instructor-statements');
-    
