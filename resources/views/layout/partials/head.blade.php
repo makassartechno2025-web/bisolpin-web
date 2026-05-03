@@ -90,4 +90,4 @@
 @endif
 
 <!-- Main CSS -->
-<link rel="stylesheet" href="{{url('build/css/style.css')}}">
+<link rel="stylesheet" href="{{url('build/css/style.css?v=3')}}">
