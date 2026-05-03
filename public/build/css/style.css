@@ -28202,12 +28202,58 @@ textarea:focus {
     background-color: #1BA89C !important;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-.header-logo img {
-    max-height: 40px !important;
-    width: auto !important;
-}
 header .main-menu-wrapper .main-nav > li .submenu {
-    display: none;
+    display: none !important;
+}
+
+/* Bisolpin Logo: icon + text side by side */
+.logo-dark.header-logo {
+    display: none !important;
+}
+.bisolpin-logo-icon {
+    width: 48px;
+    height: 40px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.bisolpin-logo-icon img {
+    width: 48px !important;
+    height: auto !important;
+    max-height: none !important;
+    /* Crop bottom 25% where "BISOLPIN" text is in the image */
+    clip-path: inset(0 0 25% 0);
+    object-fit: contain;
+}
+.header-logo {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px;
+    text-decoration: none !important;
+}
+.bisolpin-logo-text {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 2px;
+    line-height: 1;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Clean nav links */
+.bisolpin-nav > li > a {
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    letter-spacing: 0.3px;
+}
+.bisolpin-nav > li.active > a {
+    color: #FFBF00 !important;
+}
+.bisolpin-nav > li > a:hover {
+    color: #FFBF00 !important;
 }
 
 /* --- 1. Hero Banner: Uniform teal background --- */
