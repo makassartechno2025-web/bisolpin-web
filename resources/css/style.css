@@ -28261,11 +28261,18 @@ header .main-menu-wrapper .main-nav > li .submenu {
     background-color: #1BA89C !important;
     overflow: hidden;
 }
-.banner-section .banner-bg1,
+/* Hide only the blur blobs (bg-15) that caused background split */
+.banner-section .banner-bg1 {
+    display: none !important;
+}
+/* Keep decorative elements (lines, stars, paper plane) - blend over teal */
 .banner-section .banner-bg2,
 .banner-section .banner-bg3,
 .banner-section .banner-bg4 {
-    display: none !important;
+    display: flex !important;
+    opacity: 0.55;
+    mix-blend-mode: screen;
+    filter: brightness(1.8) saturate(0.7);
 }
 .banner-section .banner-content .hero-title {
     background-color: rgba(0,0,0,0.2) !important;
