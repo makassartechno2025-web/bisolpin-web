@@ -28189,7 +28189,12 @@ textarea:focus {
 }
 
 /*# sourceMappingURL=style.css.map */
-/* Custom Bisolpin Overrides */
+
+/* ============================================
+   Custom Bisolpin Overrides
+   ============================================ */
+
+/* --- Navbar --- */
 .header-one, .header-two, .header-three, .header-five {
     background-color: #1BA89C !important;
 }
@@ -28204,3 +28209,112 @@ textarea:focus {
 header .main-menu-wrapper .main-nav > li .submenu {
     display: none;
 }
+
+/* --- 1. Hero Banner: Uniform teal background --- */
+.banner-section {
+    background-color: #1BA89C !important;
+    overflow: hidden;
+}
+.banner-section .banner-bg1,
+.banner-section .banner-bg2,
+.banner-section .banner-bg3,
+.banner-section .banner-bg4 {
+    display: none !important;
+}
+.banner-section .banner-content .hero-title {
+    background-color: rgba(0,0,0,0.2) !important;
+    border-radius: 6px;
+}
+
+/* --- 2. Blog/Article section: fix overlap with trust section --- */
+.latest-blog-five.latest-blog-three {
+    padding-bottom: 60px !important;
+    margin-bottom: 0 !important;
+    overflow: visible;
+}
+.latest-blog-five.latest-blog-three .latest-blog-main {
+    overflow: hidden;
+}
+/* Constrain the left portrait column so it doesn't push layout too tall */
+.latest-blog-five.latest-blog-three .latest-blog-main > .row > .col-lg-4 .event-blog-three {
+    max-height: 420px;
+    overflow: hidden;
+}
+.latest-blog-five.latest-blog-three .latest-blog-main > .row > .col-lg-4 .blog-img-three {
+    max-height: 420px;
+}
+.latest-blog-five.latest-blog-three .latest-blog-main > .row > .col-lg-4 .blog-img-three img {
+    max-height: 420px;
+    object-fit: cover;
+}
+.event-blog-three {
+    margin-bottom: 24px !important;
+}
+
+/* --- 3. Trust/CTA section ("Mulai Belajar"): fix excessive height --- */
+.trust-sec {
+    padding-top: 20px !important;
+    padding-bottom: 40px !important;
+    background-color: var(--light-300) !important;
+}
+.trust-sec .trust-content {
+    padding: 40px 48px 40px !important;
+    border-radius: 16px;
+    overflow: hidden;
+}
+.trust-sec .trust-bg {
+    display: none !important;
+}
+.trust-sec .trust-content h4 {
+    line-height: 36px !important;
+}
+@media (max-width: 991.98px) {
+    .trust-sec .trust-content {
+        padding: 30px 30px 30px !important;
+    }
+}
+@media (max-width: 767.98px) {
+    .trust-sec .trust-content {
+        padding: 24px 20px 24px !important;
+    }
+}
+
+/* --- 4. Event section: full-width background --- */
+.top-courses-sec {
+    position: relative !important;
+    overflow: hidden !important;
+    background: linear-gradient(135deg, #f0faf9 0%, #fef9f0 50%, #fdf4e8 100%) !important;
+}
+.top-courses-sec .top-courses-bg {
+    display: none !important;
+}
+
+/* --- 5. Footer logo: constrain size --- */
+.footer .footer-about .footer-logo img {
+    max-height: 80px !important;
+    width: auto !important;
+}
+
+/* --- General Polish --- */
+.benefit-section {
+    padding: 60px 0 !important;
+}
+.benefit-section .card {
+    border-radius: 12px;
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.benefit-section .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.how-it-works-sec-two {
+    padding: 60px 0 !important;
+}
+.testimonials-section {
+    padding: 60px 0 !important;
+}
+.community-to-learn {
+    padding: 60px 0 !important;
+}
+
