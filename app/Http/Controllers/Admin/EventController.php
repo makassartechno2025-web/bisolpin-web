@@ -39,7 +39,9 @@ class EventController extends Controller
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('bisolpin/events', 'cloudinary');
-            $validated['image_url'] = \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($path);
+            /** @var \Illuminate\Filesystem\FilesystemAdapter $disk */
+            $disk = \Illuminate\Support\Facades\Storage::disk('cloudinary');
+            $validated['image_url'] = $disk->url($path);
         }
 
         Event::create($validated);
@@ -70,7 +72,9 @@ class EventController extends Controller
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('bisolpin/events', 'cloudinary');
-            $validated['image_url'] = \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($path);
+            /** @var \Illuminate\Filesystem\FilesystemAdapter $disk */
+            $disk = \Illuminate\Support\Facades\Storage::disk('cloudinary');
+            $validated['image_url'] = $disk->url($path);
         }
 
         $event->update($validated);

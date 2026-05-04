@@ -42,7 +42,9 @@ class CourseController extends Controller
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('bisolpin/courses', 'cloudinary');
-            $validated['image_url'] = \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($path);
+            /** @var \Illuminate\Filesystem\FilesystemAdapter $disk */
+            $disk = \Illuminate\Support\Facades\Storage::disk('cloudinary');
+            $validated['image_url'] = $disk->url($path);
         }
 
         Course::create($validated);
@@ -75,7 +77,9 @@ class CourseController extends Controller
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('bisolpin/courses', 'cloudinary');
-            $validated['image_url'] = \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($path);
+            /** @var \Illuminate\Filesystem\FilesystemAdapter $disk */
+            $disk = \Illuminate\Support\Facades\Storage::disk('cloudinary');
+            $validated['image_url'] = $disk->url($path);
         }
 
         $course->update($validated);

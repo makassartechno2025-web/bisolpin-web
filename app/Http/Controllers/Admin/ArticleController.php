@@ -41,7 +41,9 @@ class ArticleController extends Controller
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('bisolpin/articles', 'cloudinary');
-            $validated['image_url'] = \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($path);
+            /** @var \Illuminate\Filesystem\FilesystemAdapter $disk */
+            $disk = \Illuminate\Support\Facades\Storage::disk('cloudinary');
+            $validated['image_url'] = $disk->url($path);
         }
 
         Article::create($validated);
@@ -74,7 +76,9 @@ class ArticleController extends Controller
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('bisolpin/articles', 'cloudinary');
-            $validated['image_url'] = \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($path);
+            /** @var \Illuminate\Filesystem\FilesystemAdapter $disk */
+            $disk = \Illuminate\Support\Facades\Storage::disk('cloudinary');
+            $validated['image_url'] = $disk->url($path);
         }
 
         $article->update($validated);
