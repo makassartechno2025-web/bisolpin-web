@@ -1,4 +1,4 @@
-<?php $page = 'register'; ?>
+﻿<?php $page = 'register'; ?>
 @extends('layout.mainlayout')
 @section('content')
     <div class="login-content">
@@ -57,25 +57,26 @@
                                 </a>
                             </div>
                             <h1 class="fs-32 fw-bold topic">Sign up</h1>
-                            <form action="{{url('login')}}" class="mb-3 pb-3">
+                            <form action="{{route('register.custom')}}" method="POST" class="mb-3 pb-3">
+                                @csrf
                                 <div class="mb-3 position-relative">
                                     <label class="form-label">Full Name<span class="text-danger ms-1">*</span></label>
                                     <div class="position-relative">
-                                        <input type="text" class="form-control form-control-lg">
+                                        <input type="text" name="name" class="form-control form-control-lg" required>
                                         <span><i class="isax isax-user input-icon text-gray-7 fs-14"></i></span>
                                     </div>
                                 </div>
                                 <div class="mb-3 position-relative">
                                     <label class="form-label">Email<span class="text-danger ms-1">*</span></label>
                                     <div class="position-relative">
-                                        <input type="email" class="form-control form-control-lg">
+                                        <input type="email" name="email" class="form-control form-control-lg" required>
                                         <span><i class="isax isax-sms input-icon text-gray-7 fs-14"></i></span>
                                     </div>
                                 </div>
                                 <div class="mb-3 position-relative">
                                     <label class="form-label">New Password <span class="text-danger"> *</span></label>
                                     <div class="position-relative" id="passwordInput">
-                                        <input type="password" class="pass-inputs form-control form-control-lg">
+                                        <input type="password" name="password" class="pass-inputs form-control form-control-lg" required minlength="6">
                                         <span class="isax toggle-passwords isax-eye-slash text-gray-7 fs-14"></span>
                                     </div>
                                     <div class="password-strength" id="passwordStrength">
@@ -128,3 +129,4 @@
         </div>
     </div>
 @endsection
+

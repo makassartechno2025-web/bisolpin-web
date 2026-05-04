@@ -57,18 +57,19 @@
                                 </a>
                             </div>
                             <h1 class="fs-32 fw-bold topic">Sign into Your Account</h1>
-                            <form action="{{url('instructor-dashboard')}}" class="mb-3 pb-3">
+                            <form action="{{route('login.custom')}}" method="POST" class="mb-3 pb-3">
+                                @csrf
                                 <div class="mb-3 position-relative">
                                     <label class="form-label">Email<span class="text-danger ms-1">*</span></label>
                                     <div class="position-relative">
-                                        <input type="email" class="form-control form-control-lg">
+                                        <input type="email" name="email" class="form-control form-control-lg" required>
                                         <span><i class="isax isax-sms input-icon text-gray-7 fs-14"></i></span>
                                     </div>
                                 </div>
                                 <div class="mb-3 position-relative">
                                     <label class="form-label">Password <span class="text-danger ms-1">*</span></label>
                                     <div class="position-relative" id="passwordInput">
-                                        <input type="password" class="pass-inputs form-control form-control-lg">
+                                        <input type="password" name="password" class="pass-inputs form-control form-control-lg" required>
                                         <span class="isax toggle-passwords isax-eye-slash fs-14"></span>
                                     </div>	
                                 </div>
@@ -112,4 +113,5 @@
         </div>
     </div>
 @endsection
+
 
