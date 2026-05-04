@@ -32,8 +32,8 @@ class TestimonialController extends Controller
         $validated['is_published'] = $request->boolean('is_published', true);
 
         if ($request->hasFile('avatar')) {
-            $uploaded = $request->file('avatar')->storeOnCloudinary('bisolpin/avatars');
-            $validated['avatar_url'] = $uploaded->getSecurePath();
+            $path = $request->file('avatar')->store('bisolpin/avatars', 'cloudinary');
+            $validated['avatar_url'] = \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($path);
         }
 
         Testimonial::create($validated);
@@ -58,8 +58,8 @@ class TestimonialController extends Controller
         $validated['is_published'] = $request->boolean('is_published', true);
 
         if ($request->hasFile('avatar')) {
-            $uploaded = $request->file('avatar')->storeOnCloudinary('bisolpin/avatars');
-            $validated['avatar_url'] = $uploaded->getSecurePath();
+            $path = $request->file('avatar')->store('bisolpin/avatars', 'cloudinary');
+            $validated['avatar_url'] = \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($path);
         }
 
         $testimonial->update($validated);

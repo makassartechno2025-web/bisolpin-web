@@ -38,8 +38,8 @@ class EventController extends Controller
         $validated['is_published'] = $request->boolean('is_published', false);
 
         if ($request->hasFile('image')) {
-            $uploaded = $request->file('image')->storeOnCloudinary('bisolpin/events');
-            $validated['image_url'] = $uploaded->getSecurePath();
+            $path = $request->file('image')->store('bisolpin/events', 'cloudinary');
+            $validated['image_url'] = \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($path);
         }
 
         Event::create($validated);
@@ -69,8 +69,8 @@ class EventController extends Controller
         $validated['is_published'] = $request->boolean('is_published', false);
 
         if ($request->hasFile('image')) {
-            $uploaded = $request->file('image')->storeOnCloudinary('bisolpin/events');
-            $validated['image_url'] = $uploaded->getSecurePath();
+            $path = $request->file('image')->store('bisolpin/events', 'cloudinary');
+            $validated['image_url'] = \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($path);
         }
 
         $event->update($validated);

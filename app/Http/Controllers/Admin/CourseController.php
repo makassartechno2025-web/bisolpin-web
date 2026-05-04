@@ -41,8 +41,8 @@ class CourseController extends Controller
         $validated['is_published']= $request->boolean('is_published', false);
 
         if ($request->hasFile('image')) {
-            $uploaded = $request->file('image')->storeOnCloudinary('bisolpin/courses');
-            $validated['image_url'] = $uploaded->getSecurePath();
+            $path = $request->file('image')->store('bisolpin/courses', 'cloudinary');
+            $validated['image_url'] = \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($path);
         }
 
         Course::create($validated);
@@ -74,8 +74,8 @@ class CourseController extends Controller
         $validated['is_published'] = $request->boolean('is_published', false);
 
         if ($request->hasFile('image')) {
-            $uploaded = $request->file('image')->storeOnCloudinary('bisolpin/courses');
-            $validated['image_url'] = $uploaded->getSecurePath();
+            $path = $request->file('image')->store('bisolpin/courses', 'cloudinary');
+            $validated['image_url'] = \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($path);
         }
 
         $course->update($validated);

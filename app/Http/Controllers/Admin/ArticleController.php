@@ -40,8 +40,8 @@ class ArticleController extends Controller
         $validated['published_at'] = $validated['is_published'] ? now() : null;
 
         if ($request->hasFile('image')) {
-            $uploaded = $request->file('image')->storeOnCloudinary('bisolpin/articles');
-            $validated['image_url'] = $uploaded->getSecurePath();
+            $path = $request->file('image')->store('bisolpin/articles', 'cloudinary');
+            $validated['image_url'] = \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($path);
         }
 
         Article::create($validated);
@@ -73,8 +73,8 @@ class ArticleController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            $uploaded = $request->file('image')->storeOnCloudinary('bisolpin/articles');
-            $validated['image_url'] = $uploaded->getSecurePath();
+            $path = $request->file('image')->store('bisolpin/articles', 'cloudinary');
+            $validated['image_url'] = \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($path);
         }
 
         $article->update($validated);
