@@ -1,4 +1,4 @@
-﻿<?php $page = 'index'; ?>
+<?php $page = 'index'; ?>
 @extends('layout.mainlayout')
 @section('content')
 
@@ -146,7 +146,7 @@
         </section>
         <!-- /banner -->
         <!-- Blog & Artikel -->
-        <section class="section latest-blog pb-0">
+        <section class="section latest-blog pt-5 mt-4 pb-0">
             <div class="container">
                 <div class="section-header text-center" data-aos="fade-up">
                     <span class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block">Artikel & Berita</span>
