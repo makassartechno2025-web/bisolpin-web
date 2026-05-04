@@ -1,4 +1,4 @@
-    
+﻿    
     
 
         @if(Route::is(['index','index-rtl']))
@@ -112,3 +112,4 @@
 
    
    
+

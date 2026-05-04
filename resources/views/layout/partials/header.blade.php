@@ -1,4 +1,4 @@
-
+﻿
 @if(Route::is(['index','index-2','index-5','index-rtl']))
     <!-- Header -->
     <header class="header-one">
@@ -13,13 +13,13 @@
                     <div class="navbar-logo">
                         <a class="logo-white header-logo d-flex align-items-center" href="{{url('index')}}">
                             <div class="bisolpin-logo-icon">
-                                <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo">
+                                <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo" style="max-height:45px; width:auto;">
                             </div>
                             <span class="bisolpin-logo-text">BISOLPIN</span>
                         </a>
                         <a class="logo-dark header-logo d-flex align-items-center" href="{{url('index')}}">
                             <div class="bisolpin-logo-icon">
-                                <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo">
+                                <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo" style="max-height:45px; width:auto;">
                             </div>
                             <span class="bisolpin-logo-text">BISOLPIN</span>
                         </a>
@@ -29,7 +29,7 @@
                     <div class="menu-header">
                         <a href="{{url('index')}}" class="menu-logo d-flex align-items-center">
                             <div class="bisolpin-logo-icon">
-                                <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="img-fluid" alt="Logo">
+                                <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="img-fluid" alt="Logo" style="max-height:45px; width:auto;">
                             </div>
                             <span class="bisolpin-logo-text" style="color: #1BA89C;">BISOLPIN</span>
                         </a>
@@ -108,17 +108,17 @@
                     </a>
                     <div class="navbar-logo">
                         <a class="logo-white header-logo" href="{{url('index')}}">
-                            <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo">
+                            <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo" style="max-height:45px; width:auto;">
                         </a>
                         <a class="logo-dark header-logo" href="{{url('index')}}">
-                            <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo">
+                            <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo" style="max-height:45px; width:auto;">
                         </a>
                     </div>
                 </div>
                 <div class="main-menu-wrapper">								
                     <div class="menu-header">
                         <a href="{{url('index')}}" class="menu-logo">
-                            <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="img-fluid" alt="Logo">
+                            <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="img-fluid" alt="Logo" style="max-height:45px; width:auto;">
                         </a>
                         <a id="menu_close" class="menu-close" href="javascript:void(0);">
                             <i class="fas fa-times"></i>
@@ -576,17 +576,17 @@
                 </a>
                 <div class="navbar-logo">
                     <a class="logo-white header-logo" href="{{url('index')}}">
-                        <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo">
+                        <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo" style="max-height:45px; width:auto;">
                     </a>
                     <a class="logo-dark header-logo" href="{{url('index')}}">
-                        <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo">
+                        <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo" style="max-height:45px; width:auto;">
                     </a>
                 </div>
             </div>
             <div class="main-menu-wrapper">								
                 <div class="menu-header">
                     <a href="{{url('index')}}" class="menu-logo">
-                        <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="img-fluid" alt="Logo">
+                        <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="img-fluid" alt="Logo" style="max-height:45px; width:auto;">
                     </a>
                     <a id="menu_close" class="menu-close" href="javascript:void(0);">
                         <i class="fas fa-times"></i>
@@ -1072,17 +1072,17 @@
                 </a>
                 <div class="navbar-logo">
                     <a class="logo-white header-logo" href="{{url('index')}}">
-                        <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo">
+                        <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo" style="max-height:45px; width:auto;">
                     </a>
                     <a class="logo-dark header-logo" href="{{url('index')}}">
-                        <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo">
+                        <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo" style="max-height:45px; width:auto;">
                     </a>
                 </div>
             </div>
             <div class="main-menu-wrapper">								
                 <div class="menu-header">
                     <a href="{{url('index')}}" class="menu-logo">
-                        <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="img-fluid" alt="Logo">
+                        <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="img-fluid" alt="Logo" style="max-height:45px; width:auto;">
                     </a>
                     <a id="menu_close" class="menu-close" href="javascript:void(0);">
                         <i class="fas fa-times"></i>
@@ -1464,17 +1464,17 @@
                     </a>
                     <div class="navbar-logo">
                         <a class="logo-white header-logo" href="{{url('index')}}">
-                            <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo">
+                            <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo" style="max-height:45px; width:auto;">
                         </a>
                         <a class="logo-dark header-logo" href="{{url('index')}}">
-                            <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo">
+                            <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="logo" alt="Logo" style="max-height:45px; width:auto;">
                         </a>
                     </div>
                 </div>
                 <div class="main-menu-wrapper">								
                     <div class="menu-header">
                         <a href="{{url('index')}}" class="menu-logo">
-                            <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="img-fluid" alt="Logo">
+                            <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="img-fluid" alt="Logo" style="max-height:45px; width:auto;">
                         </a>
                         <a id="menu_close" class="menu-close" href="javascript:void(0);">
                             <i class="fas fa-times"></i>
@@ -1825,5 +1825,6 @@
     </header>
     <!-- /Header -->
 @endif
+
 
 
