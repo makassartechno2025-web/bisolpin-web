@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /****** Utils ******/
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 :root {
@@ -16864,7 +16864,7 @@ h2.main-title {
 
 /****** Utils ******/
 .login-content .login-bg {
-  background: #FEEEF0;
+  background: #e8f8f6;
   min-height: 100vh;
   position: fixed;
   display: flex;
@@ -21041,10 +21041,10 @@ fieldset .quiz-attempt-card {
   background: #FFBF00;
 }
 .home-3 [dir=rtl] .testimonial-four .slick-prev:before {
-  content: "→";
+  content: "â†’";
 }
 .home-3 [dir=rtl] .testimonial-four .slick-next:before {
-  content: "←";
+  content: "â†";
 }
 .home-3 .testimonial-all {
   padding: 40px;
@@ -21480,7 +21480,7 @@ fieldset .quiz-attempt-card {
   margin-bottom: 0;
 }
 .home-4 .join-title-one ul li::before {
-  content: "ؐ";
+  content: "Ø";
   font-family: "iconsax" !important;
   position: absolute;
   top: 50%;
@@ -27119,10 +27119,10 @@ textarea:focus {
 }
 
 [dir=rtl] .testimonial-section-five .slick-prev:before {
-  content: "→";
+  content: "â†’";
 }
 [dir=rtl] .testimonial-section-five .slick-next:before {
-  content: "←";
+  content: "â†";
 }
 
 .footer.footer-six .footer-menu ul li {
@@ -28425,3 +28425,4 @@ header .main-menu-wrapper .main-nav > li .submenu {
         font-size: 13px !important;
     }
 }
+
