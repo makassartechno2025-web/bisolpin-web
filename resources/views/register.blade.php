@@ -1,4 +1,4 @@
-﻿<?php $page = 'register'; ?>
+<?php $page = 'register'; ?>
 @extends('layout.mainlayout')
 @section('content')
     <div class="login-content">
@@ -57,6 +57,12 @@
                                 </a>
                             </div>
                             <h1 class="fs-32 fw-bold topic">Sign up</h1>
+                            @if(session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+                            @if(session('error'))
+                                <div class="alert alert-danger">{{ session('error') }}</div>
+                            @endif
                             <form action="{{route('register.custom')}}" method="POST" class="mb-3 pb-3">
                                 @csrf
                                 <div class="mb-3 position-relative">

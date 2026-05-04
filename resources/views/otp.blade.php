@@ -54,14 +54,26 @@
                             </div>
                             <div class="topic">
                                 <h1 class="fs-32 fw-bold mb-3">Email OTP</h1>
-                                <p class="fs-14 fw-normal mb-0">OTP sent to your Email Address ending ******doe@example.com</p>
+                                <p class="fs-14 fw-normal mb-3">OTP sent to your Email Address ending ******doe@example.com</p>
+                                @if(session('success'))
+                                    <div class="alert alert-success">{{ session('success') }}</div>
+                                @endif
+                                @if(session('error'))
+                                    <div class="alert alert-danger">{{ session('error') }}</div>
+                                @endif
+                                @if(session('info'))
+                                    <div class="alert alert-info">{{ session('info') }}</div>
+                                @endif
                             </div>
-                            <form action="{{url('instructor-dashboard')}}" class="mb-3 pb-3">
+                            <form action="{{route('otp.verify')}}" method="POST" class="mb-3 pb-3">
+                                @csrf
                                 <div class="d-flex align-items-center mb-3">
-                                    <input type="text" class="form-control otp" maxlength="1">
-                                    <input type="text" class="form-control otp" maxlength="1">
-                                    <input type="text" class="form-control otp" maxlength="1">
-                                    <input type="text" class="form-control otp" maxlength="1">
+                                    <input type="text" name="otp1" class="form-control otp" maxlength="1" required>
+                                    <input type="text" name="otp2" class="form-control otp" maxlength="1" required>
+                                    <input type="text" name="otp3" class="form-control otp" maxlength="1" required>
+                                    <input type="text" name="otp4" class="form-control otp" maxlength="1" required>
+                                    <input type="text" name="otp5" class="form-control otp" maxlength="1" required>
+                                    <input type="text" name="otp6" class="form-control otp" maxlength="1" required>
                                 </div>
                                 <div class="timer-cover d-flex align-items-center justify-content-center">
                                     <div class="badge badge-soft-danger rounded-pill d-flex align-items-center"><i class="isax isax-clock me-1"></i><span id="otp_timer">09:59</span> <span class="ms-1">s</span></div>
@@ -72,7 +84,11 @@
                             </form>
 
                             <div class="fs-14 fw-normal d-flex align-items-center justify-content-center">
-                                Didn’t get the OTP?<a href="javascript:void(0);" class="link-2 ms-1"> Resend OTP</a>
+                                Didn’t get the OTP?
+                                <form action="{{route('otp.resend')}}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn btn-link link-2 ms-1 p-0"> Resend OTP</button>
+                                </form>
                             </div>
 
                             <!-- /Login -->

@@ -9,6 +9,8 @@ Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name(
 Route::get('register', [CustomAuthController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
+Route::post('verify-otp', [CustomAuthController::class, 'verifyOtp'])->name('otp.verify');
+Route::post('resend-otp', [CustomAuthController::class, 'resendOtp'])->name('otp.resend');
 
 
 Route::get('/', function () {
@@ -497,9 +499,7 @@ Route::get('/lock-screen', function () {
 return view('lock-screen');
 })->name('lock-screen');
 
-Route::get('/otp', function () {
-return view('otp');
-})->name('otp');
+Route::get('/otp', [CustomAuthController::class, 'otpView'])->name('otp');
 
 Route::get('/reset-password', function () {
 return view('reset-password');

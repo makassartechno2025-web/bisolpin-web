@@ -1,4 +1,4 @@
-﻿<?php $page = 'login'; ?>
+<?php $page = 'login'; ?>
 @extends('layout.mainlayout')
 @section('content')
     <div class="login-content">
@@ -57,6 +57,12 @@
                                 </a>
                             </div>
                             <h1 class="fs-32 fw-bold topic">Sign into Your Account</h1>
+                            @if(session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+                            @if(session('error'))
+                                <div class="alert alert-danger">{{ session('error') }}</div>
+                            @endif
                             <form action="{{route('login.custom')}}" method="POST" class="mb-3 pb-3">
                                 @csrf
                                 <div class="mb-3 position-relative">
