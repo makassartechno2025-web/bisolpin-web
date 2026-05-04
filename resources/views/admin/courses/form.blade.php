@@ -12,7 +12,7 @@
             </div>
             <div class="card-body p-4">
                 <form action="{{ isset($course) ? route('admin.courses.update', $course) : route('admin.courses.store') }}"
-                      method="POST">
+                      method="POST" enctype="multipart/form-data">
                     @csrf
                     @if(isset($course)) @method('PUT') @endif
 
@@ -67,19 +67,11 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">
-                            URL Gambar (Cloudinary)
-                            <a href="https://cloudinary.com" target="_blank" class="ms-1" style="font-size:11px;">
-                                <i class="fas fa-external-link-alt"></i> Upload di Cloudinary
-                            </a>
-                        </label>
-                        <input type="url" name="image_url" class="form-control" id="imageUrl"
-                               value="{{ old('image_url', $course->image_url ?? '') }}"
-                               placeholder="https://res.cloudinary.com/..."
-                               oninput="previewImage(this.value)">
+                        <label class="form-label">Gambar/Thumbnail <span class="text-muted fw-normal">(Otomatis tersimpan di Cloud)</span></label>
+                        <input type="file" name="image" class="form-control" id="imageFile" accept="image/*" onchange="previewFile()">
                         <div class="mt-2">
                             <img id="imgPreview" src="{{ old('image_url', $course->image_url ?? '') }}"
-                                 class="img-preview" style="display:{{ (isset($course) && $course->image_url) ? 'block' : 'none' }};">
+                                 class="img-preview" style="display:{{ (isset($course) && $course->image_url) ? 'block' : 'none' }}; max-width: 250px;">
                         </div>
                     </div>
 
@@ -113,18 +105,16 @@
 
     <div class="col-lg-4">
         <div class="admin-card card">
-            <div class="card-header"><i class="fas fa-info-circle me-2"></i>Panduan Upload Gambar</div>
+            <div class="card-header"><i class="fas fa-image me-2"></i>Panduan Upload Gambar</div>
             <div class="card-body p-3" style="font-size:13px;">
                 <ol class="ps-3 mb-0">
-                    <li class="mb-2">Buka <a href="https://cloudinary.com" target="_blank">cloudinary.com</a> dan login</li>
-                    <li class="mb-2">Klik <strong>Media Library → Upload</strong></li>
-                    <li class="mb-2">Pilih gambar dari komputer Anda</li>
-                    <li class="mb-2">Setelah upload, klik gambar → salin URL</li>
-                    <li>Tempel URL ke kolom "URL Gambar" di sebelah kiri</li>
+                    <li class="mb-2">Klik tombol <strong>Choose File</strong> pada form gambar</li>
+                    <li class="mb-2">Pilih gambar langsung dari komputer atau HP Anda</li>
+                    <li class="mb-2">Gambar akan otomatis terunggah ke Cloudinary saat Anda menyimpan data</li>
                 </ol>
                 <div class="mt-3 p-2 rounded" style="background:#f0faf9;font-size:12px;">
                     <i class="fas fa-lightbulb me-1" style="color:#1BA89C;"></i>
-                    <strong>Tips:</strong> Gunakan gambar rasio 16:9 untuk tampilan terbaik
+                    <strong>Tips:</strong> Gunakan gambar rasio 16:9 (misal: 800x450 px) dengan ukuran maksimal 5MB.
                 </div>
             </div>
         </div>
@@ -135,10 +125,19 @@
 
 @section('scripts')
 <script>
-function previewImage(url) {
-    const img = document.getElementById('imgPreview');
-    if (url) { img.src = url; img.style.display = 'block'; }
-    else { img.style.display = 'none'; }
+function previewFile() {
+    const preview = document.getElementById('imgPreview');
+    const file = document.getElementById('imageFile').files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener("load", function () {
+        preview.src = reader.result;
+        preview.style.display = 'block';
+    }, false);
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
 }
 </script>
 @endsection

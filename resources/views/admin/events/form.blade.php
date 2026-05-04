@@ -7,7 +7,7 @@
 <div class="admin-card card">
     <div class="card-header"><i class="fas fa-calendar-alt me-2" style="color:#ff9800;"></i>{{ isset($event) ? 'Edit Event' : 'Tambah Event Baru' }}</div>
     <div class="card-body p-4">
-        <form action="{{ isset($event) ? route('admin.events.update', $event) : route('admin.events.store') }}" method="POST">
+        <form action="{{ isset($event) ? route('admin.events.update', $event) : route('admin.events.store') }}" method="POST" enctype="multipart/form-data">
             @csrf @if(isset($event)) @method('PUT') @endif
 
             <div class="mb-3">
@@ -34,9 +34,9 @@
 
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label class="form-label">URL Gambar Banner (Cloudinary)</label>
-                    <input type="url" name="image_url" class="form-control" value="{{ old('image_url', $event->image_url ?? '') }}" placeholder="https://res.cloudinary.com/..." oninput="previewImage(this.value)">
-                    <div class="mt-2"><img id="imgPreview" src="{{ old('image_url', $event->image_url ?? '') }}" class="img-preview" style="display:{{ (isset($event) && $event->image_url) ? 'block' : 'none' }};"></div>
+                    <label class="form-label">Gambar Banner <span class="text-muted fw-normal">(Cloud)</span></label>
+                    <input type="file" name="image" class="form-control" id="imageFile" accept="image/*" onchange="previewFile()">
+                    <div class="mt-2"><img id="imgPreview" src="{{ old('image_url', $event->image_url ?? '') }}" class="img-preview" style="display:{{ (isset($event) && $event->image_url) ? 'block' : 'none' }}; max-width: 250px;"></div>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Link Pendaftaran</label>
@@ -70,5 +70,16 @@
 </div>
 @endsection
 @section('scripts')
-<script>function previewImage(url){const img=document.getElementById('imgPreview');if(url){img.src=url;img.style.display='block';}else{img.style.display='none';}}</script>
+<script>
+function previewFile() {
+    const preview = document.getElementById('imgPreview');
+    const file = document.getElementById('imageFile').files[0];
+    const reader = new FileReader();
+    reader.addEventListener("load", function () {
+        preview.src = reader.result;
+        preview.style.display = 'block';
+    }, false);
+    if (file) { reader.readAsDataURL(file); }
+}
+</script>
 @endsection

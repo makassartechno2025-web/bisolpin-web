@@ -7,7 +7,7 @@
 <div class="admin-card card">
     <div class="card-header"><i class="fas fa-star me-2" style="color:#FFBF00;"></i>{{ isset($testimonial) ? 'Edit' : 'Tambah' }} Testimoni</div>
     <div class="card-body p-4">
-        <form action="{{ isset($testimonial) ? route('admin.testimonials.update', $testimonial) : route('admin.testimonials.store') }}" method="POST">
+        <form action="{{ isset($testimonial) ? route('admin.testimonials.update', $testimonial) : route('admin.testimonials.store') }}" method="POST" enctype="multipart/form-data">
             @csrf @if(isset($testimonial)) @method('PUT') @endif
 
             <div class="row mb-3">
@@ -22,8 +22,8 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">URL Foto (Cloudinary)</label>
-                <input type="url" name="avatar_url" class="form-control" value="{{ old('avatar_url', $testimonial->avatar_url ?? '') }}" placeholder="https://res.cloudinary.com/..." oninput="previewAvatar(this.value)">
+                <label class="form-label">Foto Profil <span class="text-muted fw-normal">(Cloud)</span></label>
+                <input type="file" name="avatar" class="form-control" id="avatarFile" accept="image/*" onchange="previewAvatarFile()">
                 <div class="mt-2">
                     <img id="avatarPreview" src="{{ old('avatar_url', $testimonial->avatar_url ?? '') }}" style="width:64px;height:64px;border-radius:50%;object-fit:cover;display:{{ (isset($testimonial) && $testimonial->avatar_url) ? 'block' : 'none' }};">
                 </div>
@@ -64,5 +64,16 @@
 </div>
 @endsection
 @section('scripts')
-<script>function previewAvatar(url){const img=document.getElementById('avatarPreview');if(url){img.src=url;img.style.display='block';}else{img.style.display='none';}}</script>
+<script>
+function previewAvatarFile() {
+    const preview = document.getElementById('avatarPreview');
+    const file = document.getElementById('avatarFile').files[0];
+    const reader = new FileReader();
+    reader.addEventListener("load", function () {
+        preview.src = reader.result;
+        preview.style.display = 'block';
+    }, false);
+    if (file) { reader.readAsDataURL(file); }
+}
+</script>
 @endsection

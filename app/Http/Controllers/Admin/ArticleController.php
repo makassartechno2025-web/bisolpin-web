@@ -30,7 +30,7 @@ class ArticleController extends Controller
             'excerpt'      => 'nullable|string|max:500',
             'category_id'  => 'nullable|exists:categories,id',
             'author'       => 'nullable|string|max:255',
-            'image_url'    => 'nullable|url',
+            'image'        => 'nullable|image|max:5120',
             'is_published' => 'boolean',
         ]);
 
@@ -38,6 +38,11 @@ class ArticleController extends Controller
         $validated['author']       = $validated['author'] ?? 'Tim Bisolpin';
         $validated['is_published'] = $request->boolean('is_published', false);
         $validated['published_at'] = $validated['is_published'] ? now() : null;
+
+        if ($request->hasFile('image')) {
+            $uploaded = $request->file('image')->storeOnCloudinary('bisolpin/articles');
+            $validated['image_url'] = $uploaded->getSecurePath();
+        }
 
         Article::create($validated);
 
@@ -58,13 +63,18 @@ class ArticleController extends Controller
             'excerpt'      => 'nullable|string|max:500',
             'category_id'  => 'nullable|exists:categories,id',
             'author'       => 'nullable|string|max:255',
-            'image_url'    => 'nullable|url',
+            'image'        => 'nullable|image|max:5120',
             'is_published' => 'boolean',
         ]);
 
         $validated['is_published'] = $request->boolean('is_published', false);
         if ($validated['is_published'] && !$article->published_at) {
             $validated['published_at'] = now();
+        }
+
+        if ($request->hasFile('image')) {
+            $uploaded = $request->file('image')->storeOnCloudinary('bisolpin/articles');
+            $validated['image_url'] = $uploaded->getSecurePath();
         }
 
         $article->update($validated);

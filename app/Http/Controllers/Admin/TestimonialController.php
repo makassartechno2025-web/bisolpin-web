@@ -25,11 +25,17 @@ class TestimonialController extends Controller
             'name'         => 'required|string|max:100',
             'role'         => 'nullable|string|max:100',
             'content'      => 'required|string',
-            'avatar_url'   => 'nullable|url',
+            'avatar'       => 'nullable|image|max:2048',
             'rating'       => 'required|integer|min:1|max:5',
             'is_published' => 'boolean',
         ]);
         $validated['is_published'] = $request->boolean('is_published', true);
+
+        if ($request->hasFile('avatar')) {
+            $uploaded = $request->file('avatar')->storeOnCloudinary('bisolpin/avatars');
+            $validated['avatar_url'] = $uploaded->getSecurePath();
+        }
+
         Testimonial::create($validated);
         return redirect()->route('admin.testimonials.index')->with('success', 'Testimoni berhasil ditambahkan!');
     }
@@ -45,11 +51,17 @@ class TestimonialController extends Controller
             'name'         => 'required|string|max:100',
             'role'         => 'nullable|string|max:100',
             'content'      => 'required|string',
-            'avatar_url'   => 'nullable|url',
+            'avatar'       => 'nullable|image|max:2048',
             'rating'       => 'required|integer|min:1|max:5',
             'is_published' => 'boolean',
         ]);
         $validated['is_published'] = $request->boolean('is_published', true);
+
+        if ($request->hasFile('avatar')) {
+            $uploaded = $request->file('avatar')->storeOnCloudinary('bisolpin/avatars');
+            $validated['avatar_url'] = $uploaded->getSecurePath();
+        }
+
         $testimonial->update($validated);
         return redirect()->route('admin.testimonials.index')->with('success', 'Testimoni berhasil diperbarui!');
     }

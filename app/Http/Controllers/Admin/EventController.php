@@ -27,7 +27,7 @@ class EventController extends Controller
             'description'       => 'nullable|string',
             'event_date'        => 'required|date',
             'location'          => 'nullable|string|max:255',
-            'image_url'         => 'nullable|url',
+            'image'             => 'nullable|image|max:5120',
             'registration_link' => 'nullable|url',
             'is_free'           => 'boolean',
             'is_published'      => 'boolean',
@@ -36,6 +36,11 @@ class EventController extends Controller
         $validated['slug']         = Str::slug($validated['title']);
         $validated['is_free']      = $request->boolean('is_free', true);
         $validated['is_published'] = $request->boolean('is_published', false);
+
+        if ($request->hasFile('image')) {
+            $uploaded = $request->file('image')->storeOnCloudinary('bisolpin/events');
+            $validated['image_url'] = $uploaded->getSecurePath();
+        }
 
         Event::create($validated);
 
@@ -54,7 +59,7 @@ class EventController extends Controller
             'description'       => 'nullable|string',
             'event_date'        => 'required|date',
             'location'          => 'nullable|string|max:255',
-            'image_url'         => 'nullable|url',
+            'image'             => 'nullable|image|max:5120',
             'registration_link' => 'nullable|url',
             'is_free'           => 'boolean',
             'is_published'      => 'boolean',
@@ -62,6 +67,11 @@ class EventController extends Controller
 
         $validated['is_free']      = $request->boolean('is_free', true);
         $validated['is_published'] = $request->boolean('is_published', false);
+
+        if ($request->hasFile('image')) {
+            $uploaded = $request->file('image')->storeOnCloudinary('bisolpin/events');
+            $validated['image_url'] = $uploaded->getSecurePath();
+        }
 
         $event->update($validated);
 

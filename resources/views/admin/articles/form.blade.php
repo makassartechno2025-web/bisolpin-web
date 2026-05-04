@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<form action="{{ isset($article) ? route('admin.articles.update', $article) : route('admin.articles.store') }}" method="POST">
+<form action="{{ isset($article) ? route('admin.articles.update', $article) : route('admin.articles.store') }}" method="POST" enctype="multipart/form-data">
 @csrf @if(isset($article)) @method('PUT') @endif
 
 <div class="row">
@@ -54,9 +54,8 @@
                     <input type="text" name="author" class="form-control" value="{{ old('author', $article->author ?? 'Tim Bisolpin') }}">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">URL Gambar Cover (Cloudinary)</label>
-                    <input type="url" name="image_url" class="form-control" value="{{ old('image_url', $article->image_url ?? '') }}"
-                           placeholder="https://res.cloudinary.com/..." oninput="previewImage(this.value)">
+                    <label class="form-label">Gambar Cover <span class="text-muted fw-normal">(Cloud)</span></label>
+                    <input type="file" name="image" class="form-control" id="imageFile" accept="image/*" onchange="previewFile()">
                     <img id="imgPreview" src="{{ old('image_url', $article->image_url ?? '') }}" class="img-preview mt-2 w-100"
                          style="display:{{ (isset($article) && $article->image_url) ? 'block' : 'none' }};height:120px;object-fit:cover;">
                 </div>
@@ -74,12 +73,11 @@
             </div>
         </div>
 
-        <!-- Cloudinary guide -->
         <div class="admin-card card">
-            <div class="card-header"><i class="fas fa-cloud-upload-alt me-2"></i>Upload Gambar</div>
+            <div class="card-header"><i class="fas fa-image me-2"></i>Upload Gambar</div>
             <div class="card-body p-3" style="font-size:12px;">
-                <p class="mb-2">Upload gambar ke <a href="https://cloudinary.com" target="_blank">Cloudinary</a>, lalu salin URL-nya ke kolom gambar.</p>
-                <p class="mb-0 text-muted">💡 Di dalam editor TinyMCE, Anda bisa langsung tempel URL gambar via Insert → Image.</p>
+                <p class="mb-2">Klik tombol <strong>Choose File</strong> di atas untuk memilih gambar sampul langsung dari perangkat Anda.</p>
+                <p class="mb-0 text-muted">💡 Gambar akan otomatis tersimpan di Cloudinary secara aman saat artikel disimpan.</p>
             </div>
         </div>
     </div>
@@ -100,6 +98,15 @@ tinymce.init({
     promotion: false,
     branding: false,
 });
-function previewImage(url){const img=document.getElementById('imgPreview');if(url){img.src=url;img.style.display='block';}else{img.style.display='none';}}
+function previewFile() {
+    const preview = document.getElementById('imgPreview');
+    const file = document.getElementById('imageFile').files[0];
+    const reader = new FileReader();
+    reader.addEventListener("load", function () {
+        preview.src = reader.result;
+        preview.style.display = 'block';
+    }, false);
+    if (file) { reader.readAsDataURL(file); }
+}
 </script>
 @endsection

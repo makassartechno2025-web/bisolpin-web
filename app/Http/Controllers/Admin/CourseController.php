@@ -28,7 +28,7 @@ class CourseController extends Controller
             'title'       => 'required|string|max:255',
             'description' => 'nullable|string',
             'category_id' => 'nullable|exists:categories,id',
-            'image_url'   => 'nullable|url',
+            'image'       => 'nullable|image|max:5120',
             'instructor'  => 'nullable|string|max:255',
             'duration'    => 'nullable|string|max:100',
             'level'       => 'required|in:pemula,menengah,mahir',
@@ -39,6 +39,11 @@ class CourseController extends Controller
         $validated['slug']        = Str::slug($validated['title']);
         $validated['is_free']     = $request->boolean('is_free', true);
         $validated['is_published']= $request->boolean('is_published', false);
+
+        if ($request->hasFile('image')) {
+            $uploaded = $request->file('image')->storeOnCloudinary('bisolpin/courses');
+            $validated['image_url'] = $uploaded->getSecurePath();
+        }
 
         Course::create($validated);
 
@@ -57,7 +62,7 @@ class CourseController extends Controller
             'title'       => 'required|string|max:255',
             'description' => 'nullable|string',
             'category_id' => 'nullable|exists:categories,id',
-            'image_url'   => 'nullable|url',
+            'image'       => 'nullable|image|max:5120',
             'instructor'  => 'nullable|string|max:255',
             'duration'    => 'nullable|string|max:100',
             'level'       => 'required|in:pemula,menengah,mahir',
@@ -67,6 +72,11 @@ class CourseController extends Controller
 
         $validated['is_free']      = $request->boolean('is_free', true);
         $validated['is_published'] = $request->boolean('is_published', false);
+
+        if ($request->hasFile('image')) {
+            $uploaded = $request->file('image')->storeOnCloudinary('bisolpin/courses');
+            $validated['image_url'] = $uploaded->getSecurePath();
+        }
 
         $course->update($validated);
 
