@@ -1,4 +1,4 @@
-<?php $page = 'login'; ?>
+﻿<?php $page = 'login'; ?>
 @extends('layout.mainlayout')
 @section('content')
     <div class="login-content">
@@ -12,8 +12,8 @@
                                 <img src="{{URL::asset('build/img/auth/auth-1.svg')}}" class="img-fluid" alt="Logo">
                             </div>
                             <div class="mentor-course text-center">
-                                <h3 class="mb-2">Welcome to <br>Dreams<span class="text-secondary">LMS</span> Courses.</h3>
-                                <p>Platform designed to help organizations, educators, and learners manage, deliver, and track learning and training activities.</p>
+                                <h3 class="mb-2">Welcome to <br>BISOLPIN<span class="text-secondary"></span>.</h3>
+                                <p>Sistem Edutech Terpadu untuk pengalaman belajar dan mengajar yang lebih baik.</p>
                             </div>
                         </div>
                     </div>
@@ -23,8 +23,8 @@
                                 <img src="{{URL::asset('build/img/auth/auth-1.svg')}}" class="img-fluid" alt="Logo">
                             </div>
                             <div class="mentor-course text-center">
-                                <h3 class="mb-2">Welcome to <br>Dreams<span class="text-secondary">LMS</span> Courses.</h3>
-                                <p>Platform designed to help organizations, educators, and learners manage, deliver, and track learning and training activities.</p>
+                                <h3 class="mb-2">Welcome to <br>BISOLPIN<span class="text-secondary"></span>.</h3>
+                                <p>Sistem Edutech Terpadu untuk pengalaman belajar dan mengajar yang lebih baik.</p>
                             </div>
                         </div>
                     </div>
@@ -34,8 +34,8 @@
                                 <img src="{{URL::asset('build/img/auth/auth-1.svg')}}" class="img-fluid" alt="Logo">
                             </div>
                             <div class="mentor-course text-center">
-                                <h3 class="mb-2">Welcome to <br>Dreams<span class="text-secondary">LMS</span> Courses.</h3>
-                                <p>Platform designed to help organizations, educators, and learners manage, deliver, and track learning and training activities.</p>
+                                <h3 class="mb-2">Welcome to <br>BISOLPIN<span class="text-secondary"></span>.</h3>
+                                <p>Sistem Edutech Terpadu untuk pengalaman belajar dan mengajar yang lebih baik.</p>
                             </div>
                         </div>
                     </div>
@@ -48,9 +48,13 @@
                 <div class="login-wrapper">
                     <div class="loginbox">
                         <div class="w-100">
-                            <div class="d-flex align-items-center justify-content-between login-header">
-                                <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="img-fluid" alt="Logo">
-                                <a href="{{url('index')}}" class="link-1">Back to Home</a>
+                            <div class="d-flex align-items-center justify-content-between login-header mb-4">
+                                <a href="{{url('/')}}">
+                                    <img src="{{URL::asset('build/img/bisolpin-logo.png')}}" class="img-fluid" alt="Bisolpin Logo" style="max-height: 50px;">
+                                </a>
+                                <a href="{{url('/')}}" class="btn btn-outline-secondary btn-sm" style="font-weight: 500;">
+                                    <i class="fas fa-arrow-left me-1"></i> Kembali ke Beranda
+                                </a>
                             </div>
                             <h1 class="fs-32 fw-bold topic">Sign into Your Account</h1>
                             <form action="{{url('instructor-dashboard')}}" class="mb-3 pb-3">
@@ -108,3 +112,4 @@
         </div>
     </div>
 @endsection
+
