@@ -1,4 +1,4 @@
-<?php $page = 'blog-grid'; ?>
+﻿<?php $page = 'blog-grid'; ?>
 @extends('layout.mainlayout')
 @section('content')
     @component('components.breadcrumb')
@@ -138,3 +138,4 @@
         </div>
         <!-- blog -->
 @endsection
+

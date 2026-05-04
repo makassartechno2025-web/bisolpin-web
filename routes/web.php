@@ -12,7 +12,12 @@ Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout')
 
 
 Route::get('/', function () {
-return view('index');
+    $courses = \App\Models\Course::where('is_published', true)->latest()->take(6)->get();
+    $articles = \App\Models\Article::where('is_published', true)->latest()->take(3)->get();
+    $events = \App\Models\Event::where('is_published', true)->latest()->take(3)->get();
+    $testimonials = \App\Models\Testimonial::where('is_published', true)->latest()->take(5)->get();
+    $categories = \App\Models\Category::withCount('courses')->where('type', 'course')->get();
+    return view('index', compact('courses', 'articles', 'events', 'testimonials', 'categories'));
 })->name('index');
 
 Route::get('/index-2', function () {
@@ -48,7 +53,9 @@ return view('blog-details');
 })->name('blog-details');
 
 Route::get('/blog-grid', function () {
-return view('blog-grid');
+    $articles = \App\Models\Article::where('is_published', true)->latest()->paginate(9);
+    $categories = \App\Models\Category::where('type', 'blog')->get();
+    return view('blog-grid', compact('articles', 'categories'));
 })->name('blog-grid');
 
 Route::get('/blog-list', function () {
@@ -80,7 +87,9 @@ return view('course-details');
 })->name('course-details');
 
 Route::get('/course-grid', function () {
-return view('course-grid');
+    $courses = \App\Models\Course::with('category')->where('is_published', true)->latest()->paginate(9);
+    $categories = \App\Models\Category::where('type', 'course')->get();
+    return view('course-grid', compact('courses', 'categories'));
 })->name('course-grid');
 
 Route::get('/course-lesson', function () {
@@ -543,3 +552,31 @@ return view('student-certificates');
 Route::get('/about-us', function () {
     return view('about-us');
     })->name('about-us');
+
+// ============================================================
+// ADMIN ROUTES - Protected by auth + admin middleware
+// ============================================================
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\SettingController;
+
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::resource('courses', CourseController::class)->names('admin.courses');
+    Route::resource('events', EventController::class)->names('admin.events');
+    Route::resource('articles', ArticleController::class)->names('admin.articles');
+    Route::resource('categories', CategoryController::class)->names('admin.categories');
+    Route::resource('testimonials', TestimonialController::class)->names('admin.testimonials');
+    Route::get('settings', [SettingController::class, 'index'])->name('admin.settings');
+    Route::post('settings', [SettingController::class, 'update'])->name('admin.settings.update');
+});
+
+// Public events page
+Route::get('/events', function () {
+    $events = \App\Models\Event::where('is_published', true)->orderBy('event_date')->get();
+    return view('events', compact('events'));
+})->name('events');

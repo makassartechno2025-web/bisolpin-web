@@ -1,4 +1,4 @@
-﻿
+
 @if(Route::is(['index','index-2','index-5','index-rtl']))
     <!-- Header -->
     <header class="header-one">
@@ -38,17 +38,34 @@
                         </a>
                     </div>
                     <ul class="main-nav bisolpin-nav">
-                        <li class="{{ Request::is('index') ? 'active' : '' }}">
-                            <a href="{{url('index')}}">Beranda</a>
+                        <li class="{{ Request::is('/') || Request::is('index') ? 'active' : '' }}">
+                            <a href="{{url('/')}}">Beranda</a>
                         </li>
-                        <li class="{{ Request::is('course-grid','course-list','course-details','course-details-2') ? 'active' : '' }}">
+                        <li class="{{ Request::is('course-grid','course-list','course-details','course-details-2','course-category') ? 'active' : '' }}">
                             <a href="{{url('course-grid')}}">Kursus</a>
                         </li>
-                        <li class="{{ Request::is('about-us') ? 'active' : '' }}">
-                            <a href="{{url('about-us')}}">Tentang Kami</a>
+                        <li class="{{ Request::is('events','event-detail') ? 'active' : '' }}">
+                            <a href="{{url('events')}}">Event</a>
                         </li>
-                        <li class="{{ Request::is('blog-grid','blog-details') ? 'active' : '' }}">
+                        <li class="{{ Request::is('blog-grid','blog-details','blog-list') ? 'active' : '' }}">
                             <a href="{{url('blog-grid')}}">Blog</a>
+                        </li>
+                        <li class="has-submenu {{ Request::is('about-us','testimonials') ? 'active' : '' }}">
+                            <a href="#">Tentang Kami <i class="fas fa-chevron-down ms-1" style="font-size:10px;"></i></a>
+                            <ul class="submenu bisolpin-submenu">
+                                <li class="{{ Request::is('about-us') ? 'active' : '' }}">
+                                    <a href="{{url('about-us')}}">Tentang Bisolpin</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/')}}#layanan">Layanan Kami</a>
+                                </li>
+                                <li class="{{ Request::is('testimonials') ? 'active' : '' }}">
+                                    <a href="{{url('testimonials')}}">Testimoni</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/')}}#karir">Karir</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="{{ Request::is('contact-us') ? 'active' : '' }}">
                             <a href="{{url('contact-us')}}">Kontak</a>

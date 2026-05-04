@@ -1,4 +1,4 @@
-<?php $page = 'index'; ?>
+﻿<?php $page = 'index'; ?>
 @extends('layout.mainlayout')
 @section('content')
 
@@ -146,129 +146,46 @@
         </section>
         <!-- /banner -->
         <!-- Blog & Artikel -->
-        <section class="latest-blog-three latest-blog-five">
+        <section class="section latest-blog pb-0">
             <div class="container">
                 <div class="section-header text-center" data-aos="fade-up">
                     <span class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block">Artikel & Berita</span>
                     <h2>Artikel & Berita Terbaru</h2>
-                    <p>Ikuti perkembangan terbaru di dunia pendidikan dan pelatihan</p>
+                    <p class="sub-title">Ikuti perkembangan terbaru di dunia pendidikan dan pelatihan</p>
                 </div>
-                <div class="latest-blog-main">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="event-blog-three blog-three-one" data-aos="fade-up">
-                                <div class="blog-img-three">
-                                    <a href="{{url('blog-grid')}}"><img class="img-fluid" alt="Img" src="{{URL::asset('build/img/blog/blog-35.jpg')}}"></a>
+                <div class="row">
+                    @forelse($articles as $article)
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100 border-0 shadow-sm" style="border-radius:12px;overflow:hidden;" data-aos="fade-up">
+                            <a href="{{ url('blog-grid') }}"><img src="{{ $article->image_url ?? URL::asset('build/img/blog/blog-35.jpg') }}" alt="" style="height:200px;object-fit:cover;width:100%;"></a>
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge" style="background:#e8f8f6;color:#1BA89C;">{{ $article->category->name ?? 'Berita' }}</span>
+                                    <small class="text-muted"><i class="far fa-calendar-alt me-1"></i>{{ $article->published_at ? $article->published_at->format('d M Y') : '-' }}</small>
                                 </div>
-                                <div class="latest-blog-content">
-                                    <div class="event-three-title">
-                                        <div class="event-span-three d-flex align-items-center">
-                                            <span class="category">Layanan</span>
-                                            <div class="blog-date"><i class="fa-solid fa-calendar"></i><span>24 Feb 2026</span></div>
-                                        </div>
-                                        <a href="{{url('blog-grid')}}"><h5>Penasehat Akademik Siswa Oleh Kaka BISOLPIN</h5></a>
-                                    </div>
-                                </div>
-                                <div class="blog-user-top">
-                                    <a href="#"><img src="{{URL::asset('build/img/user/user-01.jpg')}}" alt="">Tim Bisolpin</a>
-                                </div>
+                                <h5 class="card-title mt-2"><a href="{{ url('blog-grid') }}" class="text-dark">{{ Str::limit($article->title, 50) }}</a></h5>
+                                <p class="text-muted small mt-2">{{ Str::limit($article->excerpt, 80) }}</p>
                             </div>
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="event-blog-three blog-three-one" data-aos="fade-up">
-                                        <div class="blog-img-three">
-                                            <a href="{{url('blog-details')}}"><img class="img-fluid" alt="Img" src="{{URL::asset('build/img/blog/blog-36.jpg')}}"></a>
-                                        </div>
-                                        <div class="latest-blog-content">
-                                            <div class="event-three-title">
-                                                <div class="event-span-three d-flex align-items-center">
-                                                    <span class="category">Pendidikan</span>
-                                                    <div class="blog-date"><i class="fa-solid fa-calendar"></i> <span>27 Mar 2026</span></div>
-                                                </div>
-                                                <h5><a href="{{url('blog-grid')}}">Kursus Komputer Bidang Otomasi Perkantoran</a></h5>
-                                            </div>
-                                        </div>
-                                        <div class="blog-user-top">
-                                            <a href="#"><img src="{{URL::asset('build/img/user/user-01.jpg')}}" alt="">Tim Bisolpin</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="event-blog-three blog-three-one" data-aos="fade-up">
-                                        <div class="blog-img-three">
-                                            <a href="{{url('blog-grid')}}"><img class="img-fluid" alt="Img" src="{{URL::asset('build/img/blog/blog-38.jpg')}}"></a>
-                                        </div>
-                                        <div class="latest-blog-content">
-                                            <div class="event-three-title">
-                                                <div class="event-span-three d-flex align-items-center">
-                                                    <span class="category">Teknologi</span>
-                                                    <div class="blog-date"><i class="fa-solid fa-calendar"></i><span>12 Nov 2025</span></div>
-                                                </div>
-                                                <h5><a href="{{url('blog-grid')}}">Kreator Indonesia diperkirakan sumbang 376 miliar dolar AS</a></h5>
-                                            </div>
-                                        </div>
-                                        <div class="blog-user-top">
-                                            <a href="#"><img src="{{URL::asset('build/img/user/user-01.jpg')}}" alt="">Tim Bisolpin</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="event-blog-three blog-three-one" data-aos="fade-up">
-                                        <div class="blog-img-three">
-                                            <a href="{{url('blog-grid')}}"><img class="img-fluid" alt="Img" src="{{URL::asset('build/img/blog/blog-37.jpg')}}"></a>
-                                        </div>
-                                        <div class="latest-blog-content">
-                                            <div class="event-three-title">
-                                                <div class="event-span-three d-flex align-items-center">
-                                                    <span class="category">Teknologi</span>
-                                                    <div class="blog-date"><i class="fa-solid fa-calendar"></i><span>28 Apr 2025</span></div>
-                                                </div>
-                                                <h5><a href="{{url('blog-grid')}}">Tren Teknologi Pendidikan di 2025</a></h5>
-                                            </div>
-                                        </div>
-                                        <div class="blog-user-top">
-                                            <a href="#"><img src="{{URL::asset('build/img/user/user-01.jpg')}}" alt="">Tim Bisolpin</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="event-blog-three blog-three-one" data-aos="fade-up">
-                                        <div class="blog-img-three">
-                                            <a href="{{url('blog-grid')}}"><img class="img-fluid" alt="Img" src="{{URL::asset('build/img/blog/blog-39.jpg')}}"></a>
-                                        </div>
-                                        <div class="latest-blog-content">
-                                            <div class="event-three-title">
-                                                <div class="event-span-three d-flex align-items-center">
-                                                    <span class="category">Inspirasi</span>
-                                                    <div class="blog-date"><i class="fa-solid fa-calendar"></i><span>20 Apr 2025</span></div>
-                                                </div>
-                                                <h5><a href="{{url('blog-grid')}}">Kisah Sukses Alumni Bisolpin</a></h5>
-                                            </div>
-                                        </div>
-                                        <div class="blog-user-top">
-                                            <a href="#"><img src="{{URL::asset('build/img/user/user-01.jpg')}}" alt="">Tim Bisolpin</a>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="card-footer bg-white border-0 px-4 pb-4 pt-0 d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-user-circle me-1"></i>{{ $article->author }}</small>
+                                <a href="{{ url('blog-grid') }}" style="font-size:13px;font-weight:600;color:#1BA89C;">Baca Selengkapnya <i class="fas fa-arrow-right ms-1"></i></a>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="text-center">
-                    <a class="btn btn-view-all" data-aos="fade-up" href="{{url('blog-grid')}}">Lihat Semua Artikel</a>
+                    @empty
+                    <div class="col-12 text-center py-4 text-muted">Belum ada artikel.</div>
+                    @endforelse
                 </div>
             </div>
         </section>
         <!-- /Blog & Artikel -->
         <!-- Layanan -->
-        <section class="benefit-section">
+        <section id="layanan" class="benefit-section">
             <div class="container">
                 <div class="section-header text-center">
                     <span class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block">Layanan Kami</span>
                     <h2>Kami Berfokus pada Teknologi dan Pembelajaran Inovatif</h2>
-                    <p>Misi kami adalah memberdayakan peserta dengan pengetahuan, keterampilan, dan pola pikir yang dibutuhkan untuk sukses. Kami percaya bahwa pendidikan lebih dari sekadar akademis—pendidikan adalah tentang membentuk individu yang berkarakter, percaya diri, dan seimbang.</p>
+                    <p>Misi kami adalah memberdayakan peserta dengan pengetahuan, keterampilan, dan pola pikir yang dibutuhkan untuk sukses. Kami percaya bahwa pendidikan lebih dari sekadar akademisâ€”pendidikan adalah tentang membentuk individu yang berkarakter, percaya diri, dan seimbang.</p>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-md-6">
@@ -410,7 +327,7 @@
         <!-- /Event -->
 
         <!-- Karir -->
-        <div class="how-it-works-sec-two">
+        <div id="karir" class="how-it-works-sec-two">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
@@ -629,3 +546,5 @@
         <!-- /Download APK -->
 
 @endsection
+
+
