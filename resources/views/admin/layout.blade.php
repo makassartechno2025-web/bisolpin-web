@@ -171,12 +171,24 @@
 
         @media (max-width: 768px) {
             .admin-sidebar { transform: translateX(-260px); }
+            body.show-sidebar .admin-sidebar { transform: translateX(0); box-shadow: 2px 0 10px rgba(0,0,0,0.2); }
             .admin-main { margin-left: 0; }
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 0; left: 0; width: 100vw; height: 100vh;
+                background: rgba(0,0,0,0.5);
+                z-index: 999;
+            }
+            body.show-sidebar .sidebar-overlay { display: block; }
         }
     </style>
     @yield('styles')
 </head>
 <body>
+
+<!-- Overlay for mobile sidebar -->
+<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
 <!-- Sidebar -->
 <div class="admin-sidebar" id="adminSidebar">
@@ -223,7 +235,12 @@
 <!-- Main -->
 <div class="admin-main">
     <div class="admin-topbar">
-        <h5>@yield('page-title', 'Dashboard')</h5>
+        <div class="d-flex align-items-center">
+            <button class="btn btn-sm btn-light d-md-none me-3" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h5 class="mb-0">@yield('page-title', 'Dashboard')</h5>
+        </div>
         <div class="d-flex align-items-center gap-3">
             @if(session('success'))
                 <span class="badge bg-success">{{ session('success') }}</span>
@@ -258,6 +275,11 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function toggleSidebar() {
+        document.body.classList.toggle('show-sidebar');
+    }
+</script>
 @yield('scripts')
 </body>
 </html>
