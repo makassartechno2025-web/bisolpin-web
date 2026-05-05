@@ -123,7 +123,7 @@ return view('help-center');
 })->name('help-center');
 
 Route::get('/index', function () {
-return view('index');
+    return redirect('/');
 })->name('index-html');
 
 Route::get('/instructor-chat', function () {
