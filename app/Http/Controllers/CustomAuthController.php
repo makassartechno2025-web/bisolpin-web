@@ -160,6 +160,44 @@ class CustomAuthController extends Controller
         return redirect()->back()->with('success', 'OTP telah dikirim ulang ke email Anda.');
     }
 
+    public function googleLoginWeb(Request $request)
+    {
+        $accessToken = $request->input('access_token');
+        if (!$accessToken) {
+            return redirect()->route('login')->with('error', 'Token Google tidak ditemukan.');
+        }
+
+        $response = Http::post($this->apiUrl('/api/auth/google-login'), [
+            'access_token' => $accessToken
+        ]);
+
+        if ($response->successful()) {
+            $data = $response->json();
+            
+            if (isset($data['data']['token'])) {
+                $token = $data['data']['token'];
+                $userData = $data['data']['user'];
+                
+                // Mirror user
+                $user = User::updateOrCreate(
+                    ['email' => $userData['email']],
+                    [
+                        'name' => $userData['name'],
+                        'password' => Hash::make(\Illuminate\Support\Str::random(24)),
+                        'role' => $userData['role'] ?? 'user',
+                    ]
+                );
+                
+                Auth::login($user);
+                session(['api_token' => $token]);
+                
+                return $this->redirectBasedOnRole();
+            }
+        }
+
+        return redirect()->route('login')->with('error', $response->json('message') ?? 'Login dengan Google gagal.');
+    }
+
     public function signOut()
     {
         if (session('api_token')) {

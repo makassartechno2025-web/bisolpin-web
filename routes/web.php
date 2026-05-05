@@ -11,6 +11,7 @@ Route::post('custom-registration', [CustomAuthController::class, 'customRegistra
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 Route::post('verify-otp', [CustomAuthController::class, 'verifyOtp'])->name('otp.verify');
 Route::post('resend-otp', [CustomAuthController::class, 'resendOtp'])->name('otp.resend');
+Route::post('auth/google/callback', [CustomAuthController::class, 'googleLoginWeb'])->name('auth.google.callback');
 
 
 Route::get('/', function () {

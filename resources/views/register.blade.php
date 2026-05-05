@@ -118,7 +118,7 @@
                             </div>
 
                             <div class="d-flex align-items-center justify-content-center mb-3">
-                                <a href="javascript:void(0);" class="btn btn-light me-2"><img src="{{URL::asset('build/img/icons/google.svg')}}" alt="img" class="me-2">Google</a>
+                                <a href="javascript:void(0);" onclick="handleGoogleLogin()" class="btn btn-light me-2"><img src="{{URL::asset('build/img/icons/google.svg')}}" alt="img" class="me-2">Google</a>
                                 <a href="javascript:void(0);" class="btn btn-light"><img src="{{URL::asset('build/img/icons/facebook.svg')}}" alt="img" class="me-2">Facebook</a>
                             </div>
 
@@ -134,5 +134,47 @@
             </div>
         </div>
     </div>
+
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+      let tokenClient;
+      window.onload = function () {
+        tokenClient = google.accounts.oauth2.initTokenClient({
+          client_id: '{{ env('GOOGLE_WEB_CLIENT_ID', '116888351989-6ko8qhoec5jop8s3sjne0aggpnjas6pc.apps.googleusercontent.com') }}',
+          scope: 'email profile',
+          callback: (tokenResponse) => {
+            if (tokenResponse && tokenResponse.access_token) {
+              const form = document.createElement('form');
+              form.method = 'POST';
+              form.action = '{{ route("auth.google.callback") }}';
+              
+              const csrf = document.createElement('input');
+              csrf.type = 'hidden';
+              csrf.name = '_token';
+              csrf.value = '{{ csrf_token() }}';
+              
+              const tokenInput = document.createElement('input');
+              tokenInput.type = 'hidden';
+              tokenInput.name = 'access_token';
+              tokenInput.value = tokenResponse.access_token;
+              
+              form.appendChild(csrf);
+              form.appendChild(tokenInput);
+              document.body.appendChild(form);
+              form.submit();
+            }
+          },
+        });
+      };
+    
+      function handleGoogleLogin() {
+        if(tokenClient) {
+            tokenClient.requestAccessToken();
+        } else {
+            alert("Google Login is still loading. Please wait a moment.");
+        }
+      }
+    </script>
 @endsection
 
