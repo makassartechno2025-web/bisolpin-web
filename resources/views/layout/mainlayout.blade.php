@@ -47,7 +47,7 @@
     <div class="main-wrapper chat-wrapper">
         @endif
     <!-- Main Wrapper -->
-    @if (!Route::is(['login', 'register','student-messages','instructor-chat','index-6']))
+    @if (!Route::is(['login', 'register', 'register-user', 'student-messages','instructor-chat','index-6']))
         <div class="main-wrapper">
     @endif
     @if (Route::is(['index-3']))
@@ -56,7 +56,7 @@
     @if (Route::is(['index-4']))
     <div class="home-4">
     @endif
-    @if (Route::is(['login', 'register']))
+    @if (Route::is(['login', 'register', 'register-user']))
         <div class="main-wrapper log-wrap">
     @endif
     @if (Route::is(['index-6']))
@@ -76,6 +76,7 @@
             'register-step-three',
             'register-step-two',
             'register',
+            'register-user',
             'under-construction',
             'verification-code',
             'view-invoice',
@@ -101,6 +102,7 @@
             'register-step-three',
             'register-step-two',
             'register',
+            'register-user',
             'under-construction',
             'verification-code',
             'lock-screen',
