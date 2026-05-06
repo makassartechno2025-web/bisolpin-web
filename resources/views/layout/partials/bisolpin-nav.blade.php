@@ -6,7 +6,7 @@
     </li>
 
     {{-- Tentang Kami (dropdown) --}}
-    <li class="has-submenu {{ Request::is('about-us', 'events', 'event-detail', 'kemitraan') ? 'active' : '' }}">
+    <li class="has-submenu {{ Request::is('about-us', 'kemitraan') ? 'active' : '' }}">
         <a href="#">Tentang Kami <i class="fas fa-chevron-down ms-1" style="font-size:10px;"></i></a>
         <ul class="submenu bisolpin-submenu">
             <li class="{{ Request::is('about-us') ? 'active' : '' }}">
@@ -14,9 +14,6 @@
             </li>
             <li>
                 <a href="{{ url('/') }}#kemitraan">Kemitraan</a>
-            </li>
-            <li class="{{ Request::is('events', 'event-detail') ? 'active' : '' }}">
-                <a href="{{ url('events') }}">Event</a>
             </li>
         </ul>
     </li>
