@@ -28,7 +28,7 @@
                                     <span class="verify-tick"><i class="isax isax-verify5"></i></span>
                                 </span>
                                 <div>
-                                    <h5 class="mb-1 text-white d-inline-flex align-items-center">Ronald Richard<a href="{{url('instructor-profile')}}" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
+                                    <h5 class="mb-1 text-white d-inline-flex align-items-center">{{ $userData['name'] ?? auth()->user()->name ?? 'Student' }}<a href="{{url('instructor-profile')}}" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
                                     <p class="text-light">Student</p>
                                 </div>
                             </div>
@@ -56,62 +56,62 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="mb-3">
-                                            <h6>First Name</h6>
-                                            <span>Ronald</span>
+                                            <h6>Full Name</h6>
+                                            <span>{{ $userData['name'] ?? auth()->user()->name ?? '-' }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
-                                            <h6>Last Name</h6>
-                                            <span>Richard</span>
+                                            <h6>User Role</h6>
+                                            <span>{{ ucfirst($userData['role'] ?? auth()->user()->role ?? 'Student') }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <h6>Registration Date</h6>
-                                            <span>16 Jan 2024, 11:15 AM</span>
+                                            <span>{{ isset($userData['created_at']) ? \Carbon\Carbon::parse($userData['created_at'])->format('d M Y, H:i A') : '-' }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <h6>User Name</h6>
-                                            <span>studentdemo</span>
+                                            <span>{{ $userData['username'] ?? '-' }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <h6>Phone Number</h6>
-                                            <span>90154-91036</span>
+                                            <span>{{ $userData['phone'] ?? $userData['phone_number'] ?? '-' }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <h6>Email</h6>
-                                            <span>studentdemo@example.com</span>
+                                            <span>{{ $userData['email'] ?? auth()->user()->email ?? '-' }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <h6>Gender</h6>
-                                            <span>Male</span>
+                                            <span>{{ $userData['gender'] ?? '-' }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <h6>DOB</h6>
-                                            <span>16 Jan 2020</span>
+                                            <span>{{ isset($userData['dob']) ? \Carbon\Carbon::parse($userData['dob'])->format('d M Y') : '-' }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <h6>Age</h6>
-                                            <span>24</span>
+                                            <span>{{ isset($userData['dob']) ? \Carbon\Carbon::parse($userData['dob'])->age : '-' }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div>
                                             <h6>Bio</h6>
-                                            <span>Hello! I'm Ronald Richard. I'm passionate about developing innovative software solutions, analyzing classic literature. I aspire to become a software developer, work as an editor. In my free time, I enjoy coding, reading, hiking etc.
+                                            <span>{{ $userData['bio'] ?? '-' }}
                                             </span>
                                         </div>
                                     </div>

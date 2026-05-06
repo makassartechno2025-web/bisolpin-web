@@ -29,8 +29,8 @@
                                     <span class="verify-tick"><i class="isax isax-verify5"></i></span>
                                 </span>
                                 <div>
-                                    <h5 class="mb-1 text-white d-inline-flex align-items-center"><a href="{{url('student-details')}}">Ronald Richard</a><a href="{{url('instructor-profile')}}" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
-                                    <p class="text-light">Student</p>
+                                    <h5 class="mb-1 text-white d-inline-flex align-items-center"><a href="{{route('student-profile')}}">{{ $userData['name'] ?? auth()->user()->name ?? 'Student' }}</a><a href="{{route('student-profile')}}" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
+                                    <p class="text-light">{{ ucfirst($userData['role'] ?? auth()->user()->role ?? 'Student') }}</p>
                                 </div>
                             </div>
                         </div>

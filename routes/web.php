@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\StudentController;
 
 Route::get('index', [CustomAuthController::class, 'dashboard']); 
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
@@ -231,9 +232,9 @@ Route::get('/setting-student-subscription', function () {
 return view('setting-student-subscription');
 })->name('setting-student-subscription');
 
-Route::get('/student-profile', function () {
-return view('student-profile');
-})->name('student-profile');
+Route::get('/student-profile', [StudentController::class, 'profile'])
+    ->middleware('auth')
+    ->name('student-profile');
 
 Route::get('/students-grid', function () {
 return view('students-grid');
@@ -267,9 +268,9 @@ Route::get('/wishlist', function () {
 return view('wishlist');
 })->name('wishlist');
 
-Route::get('/student-dashboard', function () {
-return view('student-dashboard');
-})->name('student-dashboard');
+Route::get('/student-dashboard', [StudentController::class, 'dashboard'])
+    ->middleware('auth')
+    ->name('student-dashboard');
 
 Route::get('/student-courses', function () {
 return view('student-courses');
