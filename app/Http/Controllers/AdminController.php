@@ -32,16 +32,19 @@ class AdminController extends Controller
         $latestArticles     = Article::latest()->take(5)->get();
         $latestTestimonials = Testimonial::latest()->take(5)->get();
 
-        // Chart: Articles per month (last 6 months)
+        // Chart: Articles per month (last 6 months) - SQLite compatible
         $articleChart = Article::select(
-                DB::raw("DATE_FORMAT(created_at, '%b %Y') as month"),
-                DB::raw("DATE_FORMAT(created_at, '%Y-%m') as month_key"),
+                DB::raw("strftime('%Y-%m', created_at) as month_key"),
                 DB::raw('count(*) as total')
             )
             ->where('created_at', '>=', now()->subMonths(5)->startOfMonth())
-            ->groupBy('month', 'month_key')
+            ->groupBy('month_key')
             ->orderBy('month_key')
-            ->get();
+            ->get()
+            ->map(function ($item) {
+                $item->month = \Carbon\Carbon::createFromFormat('Y-m', $item->month_key)->format('M Y');
+                return $item;
+            });
 
         $chartLabels = $articleChart->pluck('month')->toArray();
         $chartData   = $articleChart->pluck('total')->toArray();
