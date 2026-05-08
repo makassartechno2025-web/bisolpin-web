@@ -113,7 +113,8 @@ return view('error-500');
 })->name('error-500');
 
 Route::get('/faq', function () {
-return view('faq');
+    $faqs = \App\Models\Faq::published()->get()->groupBy('category');
+    return view('faq', compact('faqs'));
 })->name('faq');
 
 Route::get('/forgot-password', function () {
@@ -565,6 +566,7 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\FaqController;
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -573,6 +575,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('articles', ArticleController::class)->names('admin.articles');
     Route::resource('categories', CategoryController::class)->names('admin.categories');
     Route::resource('testimonials', TestimonialController::class)->names('admin.testimonials');
+    Route::resource('faqs', FaqController::class)->names('admin.faqs');
     Route::get('settings', [SettingController::class, 'index'])->name('admin.settings');
     Route::post('settings', [SettingController::class, 'update'])->name('admin.settings.update');
 });

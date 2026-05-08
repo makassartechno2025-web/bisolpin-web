@@ -10,9 +10,18 @@ use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::with('category')->latest()->paginate(15);
+        $query = Article::with('category')->latest();
+
+        if ($request->filled('search')) {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+        if ($request->filled('status')) {
+            $query->where('is_published', $request->status === 'published');
+        }
+
+        $articles = $query->paginate(15)->appends($request->only(['search', 'status']));
         return view('admin.articles.index', compact('articles'));
     }
 
@@ -25,13 +34,14 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title'        => 'required|string|max:255',
-            'content'      => 'required|string',
-            'excerpt'      => 'nullable|string|max:500',
-            'category_id'  => 'nullable|exists:categories,id',
-            'author'       => 'nullable|string|max:255',
-            'image'        => 'nullable|image|max:5120',
-            'is_published' => 'boolean',
+            'title'            => 'required|string|max:255',
+            'content'          => 'required|string',
+            'excerpt'          => 'nullable|string|max:500',
+            'meta_description' => 'nullable|string|max:160',
+            'category_id'      => 'nullable|exists:categories,id',
+            'author'           => 'nullable|string|max:255',
+            'image'            => 'nullable|image|max:5120',
+            'is_published'     => 'boolean',
         ]);
 
         $validated['slug']         = Str::slug($validated['title']);
@@ -60,13 +70,14 @@ class ArticleController extends Controller
     public function update(Request $request, Article $article)
     {
         $validated = $request->validate([
-            'title'        => 'required|string|max:255',
-            'content'      => 'required|string',
-            'excerpt'      => 'nullable|string|max:500',
-            'category_id'  => 'nullable|exists:categories,id',
-            'author'       => 'nullable|string|max:255',
-            'image'        => 'nullable|image|max:5120',
-            'is_published' => 'boolean',
+            'title'            => 'required|string|max:255',
+            'content'          => 'required|string',
+            'excerpt'          => 'nullable|string|max:500',
+            'meta_description' => 'nullable|string|max:160',
+            'category_id'      => 'nullable|exists:categories,id',
+            'author'           => 'nullable|string|max:255',
+            'image'            => 'nullable|image|max:5120',
+            'is_published'     => 'boolean',
         ]);
 
         $validated['is_published'] = $request->boolean('is_published', false);

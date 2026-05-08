@@ -219,6 +219,9 @@
     <a href="{{ route('admin.testimonials.index') }}" class="nav-link {{ Request::is('admin/testimonials*') ? 'active' : '' }}">
         <i class="fas fa-star"></i> Testimoni
     </a>
+    <a href="{{ route('admin.faqs.index') }}" class="nav-link {{ Request::is('admin/faqs*') ? 'active' : '' }}">
+        <i class="fas fa-question-circle"></i> FAQ
+    </a>
 
     <div class="nav-section">Sistem</div>
     <a href="{{ route('admin.settings') }}" class="nav-link {{ Request::is('admin/settings*') ? 'active' : '' }}">
@@ -275,10 +278,71 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0 pb-0">
+                <h6 class="modal-title fw-bold"><i class="fas fa-exclamation-triangle text-danger me-2"></i>Konfirmasi Hapus</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted mb-1">Anda akan menghapus:</p>
+                <p class="fw-semibold" id="deleteItemName" style="color:#333;"></p>
+                <p class="text-danger mb-0" style="font-size:13px;"><i class="fas fa-info-circle me-1"></i>Tindakan ini tidak dapat dibatalkan.</p>
+            </div>
+            <div class="modal-footer border-0 pt-0">
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
+                <form id="deleteForm" method="POST">
+                    @csrf @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash me-1"></i>Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index:9999;">
+    <div id="adminToast" class="toast align-items-center text-white border-0" role="alert" style="min-width:280px;">
+        <div class="d-flex">
+            <div class="toast-body" id="toastMessage"></div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+</div>
+
 <script>
     function toggleSidebar() {
         document.body.classList.toggle('show-sidebar');
     }
+    function confirmDelete(url, name) {
+        document.getElementById('deleteItemName').textContent = '"' + name + '"';
+        document.getElementById('deleteForm').action = url;
+        new bootstrap.Modal(document.getElementById('deleteModal')).show();
+    }
+    // Auto-show toast if session success
+    @if(session('success'))
+    (function() {
+        const toastEl = document.getElementById('adminToast');
+        const toastMsg = document.getElementById('toastMessage');
+        toastEl.classList.add('bg-success');
+        toastMsg.textContent = '✓ {{ session("success") }}';
+        const toast = new bootstrap.Toast(toastEl, { delay: 3500 });
+        toast.show();
+    })();
+    @endif
+    @if(session('error'))
+    (function() {
+        const toastEl = document.getElementById('adminToast');
+        const toastMsg = document.getElementById('toastMessage');
+        toastEl.classList.add('bg-danger');
+        toastMsg.textContent = '✗ {{ session("error") }}';
+        const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+        toast.show();
+    })();
+    @endif
 </script>
 @yield('scripts')
 </body>

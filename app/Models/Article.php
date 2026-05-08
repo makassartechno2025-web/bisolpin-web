@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 class Article extends Model
 {
     protected $fillable = [
-        'title', 'slug', 'content', 'excerpt',
+        'title', 'slug', 'content', 'excerpt', 'meta_description',
         'category_id', 'author', 'image_url',
         'published_at', 'is_published',
     ];

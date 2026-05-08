@@ -3,17 +3,22 @@
 @section('page-title', isset($article) ? 'Edit Artikel' : 'Tulis Artikel Baru')
 
 @section('styles')
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
 <style>
-    .tox-tinymce { border-radius: 8px !important; border-color: #ddd !important; }
+    .ql-container { font-size: 14px; min-height: 350px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+    .ql-toolbar { border-top-left-radius: 8px; border-top-right-radius: 8px; border-color: #ddd !important; }
+    .ql-container.ql-snow { border-color: #ddd !important; }
+    .ql-editor { min-height: 350px; line-height: 1.8; }
 </style>
 @endsection
 
 @section('content')
-<form action="{{ isset($article) ? route('admin.articles.update', $article) : route('admin.articles.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ isset($article) ? route('admin.articles.update', $article) : route('admin.articles.store') }}" method="POST" enctype="multipart/form-data" id="articleForm">
 @csrf @if(isset($article)) @method('PUT') @endif
+<input type="hidden" name="content" id="contentInput">
 
 <div class="row">
-    <!-- Left: Main Content -->
+    {{-- Left: Main Content --}}
     <div class="col-lg-8">
         <div class="admin-card card mb-3">
             <div class="card-body p-4">
@@ -29,14 +34,26 @@
                 <div class="mb-1">
                     <label class="form-label">Konten Artikel <span class="text-danger">*</span></label>
                 </div>
-                <textarea name="content" id="articleContent">{{ old('content', $article->content ?? '') }}</textarea>
+                <div id="quillEditor">{!! old('content', $article->content ?? '') !!}</div>
+            </div>
+        </div>
+
+        {{-- SEO Card --}}
+        <div class="admin-card card mb-3">
+            <div class="card-header"><i class="fas fa-search me-2"></i>SEO & Meta</div>
+            <div class="card-body p-4">
+                <div class="mb-3">
+                    <label class="form-label">Meta Description <span class="text-muted fw-normal">(maks. 160 karakter)</span></label>
+                    <textarea name="meta_description" class="form-control" rows="2" maxlength="160"
+                              placeholder="Deskripsi singkat untuk mesin pencari...">{{ old('meta_description', $article->meta_description ?? '') }}</textarea>
+                    <small class="text-muted" id="metaCharCount">0/160 karakter</small>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Right: Sidebar Settings -->
+    {{-- Right: Sidebar Settings --}}
     <div class="col-lg-4">
-        <!-- Publish box -->
         <div class="admin-card card mb-3">
             <div class="card-header"><i class="fas fa-cog me-2"></i>Pengaturan Artikel</div>
             <div class="card-body p-3">
@@ -58,6 +75,9 @@
                     <input type="file" name="image" class="form-control" id="imageFile" accept="image/*" onchange="previewFile()">
                     <img id="imgPreview" src="{{ old('image_url', $article->image_url ?? '') }}" class="img-preview mt-2 w-100"
                          style="display:{{ (isset($article) && $article->image_url) ? 'block' : 'none' }};height:120px;object-fit:cover;">
+                    @if(isset($article) && $article->image_url)
+                    <small class="text-muted d-block mt-1">Biarkan kosong untuk mempertahankan gambar saat ini</small>
+                    @endif
                 </div>
                 <div class="form-check form-switch mb-3">
                     <input class="form-check-input" type="checkbox" name="is_published" value="1"
@@ -72,32 +92,37 @@
                 </div>
             </div>
         </div>
-
-        <div class="admin-card card">
-            <div class="card-header"><i class="fas fa-image me-2"></i>Upload Gambar</div>
-            <div class="card-body p-3" style="font-size:12px;">
-                <p class="mb-2">Klik tombol <strong>Choose File</strong> di atas untuk memilih gambar sampul langsung dari perangkat Anda.</p>
-                <p class="mb-0 text-muted">💡 Gambar akan otomatis tersimpan di Cloudinary secara aman saat artikel disimpan.</p>
-            </div>
-        </div>
     </div>
 </div>
 </form>
 @endsection
 
 @section('scripts')
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 <script>
-tinymce.init({
-    selector: '#articleContent',
-    height: 500,
-    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-    content_style: 'body { font-family: Inter, sans-serif; font-size: 14px; line-height: 1.8; }',
-    language: 'id',
-    promotion: false,
-    branding: false,
+// Init Quill
+const quill = new Quill('#quillEditor', {
+    theme: 'snow',
+    modules: {
+        toolbar: [
+            [{ 'header': [1, 2, 3, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'align': [] }],
+            ['link', 'image', 'blockquote', 'code-block'],
+            [{ 'color': [] }, { 'background': [] }],
+            ['clean']
+        ]
+    },
+    placeholder: 'Mulai tulis konten artikel di sini...',
 });
+
+// On form submit, copy Quill HTML to hidden input
+document.getElementById('articleForm').addEventListener('submit', function() {
+    document.getElementById('contentInput').value = quill.root.innerHTML;
+});
+
+// Image preview
 function previewFile() {
     const preview = document.getElementById('imgPreview');
     const file = document.getElementById('imageFile').files[0];
@@ -107,6 +132,15 @@ function previewFile() {
         preview.style.display = 'block';
     }, false);
     if (file) { reader.readAsDataURL(file); }
+}
+
+// Meta description char count
+const metaField = document.querySelector('[name="meta_description"]');
+const charCount = document.getElementById('metaCharCount');
+if (metaField) {
+    function updateCount() { charCount.textContent = metaField.value.length + '/160 karakter'; }
+    metaField.addEventListener('input', updateCount);
+    updateCount();
 }
 </script>
 @endsection
