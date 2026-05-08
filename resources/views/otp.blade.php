@@ -54,7 +54,17 @@
                             </div>
                             <div class="topic">
                                 <h1 class="fs-32 fw-bold mb-3">Email OTP</h1>
-                                <p class="fs-14 fw-normal mb-3">OTP sent to your Email Address ending ******doe@example.com</p>
+                                @php
+                                    $email = session('verification_email', '');
+                                    $maskedEmail = $email;
+                                    if ($email) {
+                                        $parts = explode("@", $email);
+                                        $name = $parts[0];
+                                        $domain = $parts[1] ?? '';
+                                        $maskedEmail = substr($name, 0, 3) . str_repeat("*", max(0, strlen($name) - 3)) . "@" . $domain;
+                                    }
+                                @endphp
+                                <p class="fs-14 fw-normal mb-3">OTP sent to your Email Address ending <strong>{{ $maskedEmail }}</strong></p>
                                 @if(session('success'))
                                     <div class="alert alert-success">{{ session('success') }}</div>
                                 @endif
