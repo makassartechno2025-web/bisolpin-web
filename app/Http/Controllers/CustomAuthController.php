@@ -42,14 +42,19 @@ class CustomAuthController extends Controller
             if (isset($data['data']['token'])) {
                 $token = $data['data']['token'];
                 $userData = $data['data']['user'];
+
+                // Auto-promote if email is in ADMIN_EMAILS env
+                $adminEmails = array_map('trim', explode(',', env('ADMIN_EMAILS', '')));
+                $isAdmin = in_array(strtolower($userData['email']), array_map('strtolower', $adminEmails));
+                $role = $isAdmin ? 'admin' : ($userData['role'] ?? 'user');
                 
                 // Mirror user
                 $user = User::updateOrCreate(
                     ['email' => $userData['email']],
                     [
-                        'name' => $userData['name'],
+                        'name'     => $userData['name'],
                         'password' => Hash::make(Str::random(24)),
-                        'role' => $userData['role'] ?? 'user',
+                        'role'     => $role,
                     ]
                 );
                 
@@ -177,14 +182,19 @@ class CustomAuthController extends Controller
             if (isset($data['data']['token'])) {
                 $token = $data['data']['token'];
                 $userData = $data['data']['user'];
+
+                // Auto-promote if email is in ADMIN_EMAILS env
+                $adminEmails = array_map('trim', explode(',', env('ADMIN_EMAILS', '')));
+                $isAdmin = in_array(strtolower($userData['email']), array_map('strtolower', $adminEmails));
+                $role = $isAdmin ? 'admin' : ($userData['role'] ?? 'user');
                 
                 // Mirror user
                 $user = User::updateOrCreate(
                     ['email' => $userData['email']],
                     [
-                        'name' => $userData['name'],
+                        'name'     => $userData['name'],
                         'password' => Hash::make(\Illuminate\Support\Str::random(24)),
-                        'role' => $userData['role'] ?? 'user',
+                        'role'     => $role,
                     ]
                 );
                 
