@@ -49,11 +49,12 @@ class AdminController extends Controller
         $chartLabels = $articleChart->pluck('month')->toArray();
         $chartData   = $articleChart->pluck('total')->toArray();
 
-        // Chart: Category composition for courses
+        // Chart: Category composition for courses - SQLite compatible (no HAVING)
         $categoryChart = Category::where('type', 'course')
             ->withCount('courses')
-            ->having('courses_count', '>', 0)
-            ->get();
+            ->get()
+            ->filter(fn($c) => $c->courses_count > 0)
+            ->values();
 
         return view('admin.dashboard', compact(
             'stats', 'latestCourses', 'latestEvents', 'latestArticles',
