@@ -38,17 +38,19 @@ class CustomAuthController extends Controller
 
         if ($response->successful()) {
             $data = $response->json();
-            
-            if (isset($data['data']['token'])) {
-                $token = $data['data']['token'];
-                $userData = $data['data']['user'];
 
+            // Handle multiple possible API response structures
+            $tokenData = $data['data'] ?? $data;
+            $token     = $tokenData['token'] ?? $tokenData['access_token'] ?? $data['token'] ?? $data['access_token'] ?? null;
+            $userData  = $tokenData['user'] ?? $data['user'] ?? null;
+
+            if ($token && $userData) {
                 // Auto-promote if email is in ADMIN_EMAILS env
                 $adminEmails = array_map('trim', explode(',', env('ADMIN_EMAILS', '')));
                 $isAdmin = in_array(strtolower($userData['email']), array_map('strtolower', $adminEmails));
                 $role = $isAdmin ? 'admin' : ($userData['role'] ?? 'user');
-                
-                // Mirror user
+
+                // Mirror user locally
                 $user = User::updateOrCreate(
                     ['email' => $userData['email']],
                     [
@@ -57,10 +59,10 @@ class CustomAuthController extends Controller
                         'role'     => $role,
                     ]
                 );
-                
+
                 Auth::login($user);
                 session(['api_token' => $token]);
-                
+
                 return $this->redirectBasedOnRole();
             }
         } elseif ($response->status() === 403 && isset($response->json()['errors']['needs_verification'])) {
@@ -68,7 +70,13 @@ class CustomAuthController extends Controller
             return redirect()->route('otp')->with('info', 'Silakan verifikasi email Anda dengan OTP yang telah dikirim.');
         }
 
-        return redirect()->route('login')->with('error', $response->json('message') ?? 'Email atau password salah.');
+        // Show the actual API error message (or a fallback)
+        $message = $response->json('message') ?? $response->json('error') ?? 'Email atau password salah.';
+        // Avoid showing success-sounding messages as login errors
+        if (stripos($message, 'success') !== false) {
+            $message = 'Terjadi kesalahan format respons. Silakan coba lagi.';
+        }
+        return redirect()->route('login')->with('error', $message);
     }
 
     public function registration()
