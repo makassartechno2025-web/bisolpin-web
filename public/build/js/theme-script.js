@@ -19,6 +19,8 @@
       };
 
       const updateToggleButtons = (isDarkMode) => {
+          // Guard: only run if both toggle elements exist on this page
+          if (!darkModeToggle || !lightModeToggle) return;
           if (isDarkMode) {
               darkModeToggle.classList.remove('activate');
               lightModeToggle.classList.add('activate');
