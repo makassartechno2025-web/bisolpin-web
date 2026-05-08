@@ -4,8 +4,10 @@
 <link rel="apple-touch-icon" href="{{URL::asset('build/img/apple-icon.png')}}">
 @if(!Route::is(['error-404','error-500','forgot-password','login','register','under-construction','set-password','otp','lock-screen','reset-password']))
     <!-- Theme Settings Js -->
-    <script src="{{URL::asset('build/js/theme-script.js')}}"></script>
+    <script src="{{URL::asset('build/js/theme-script.js')}}?v=3"></script>
 @endif
+{{-- Safety: ensure body is never scroll-locked by JS crash --}}
+<style>html, body { overflow-x: hidden !important; overflow-y: auto !important; }</style>
 @if(!Route::is(['index-rtl']))
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{url('build/css/bootstrap.min.css')}}">
