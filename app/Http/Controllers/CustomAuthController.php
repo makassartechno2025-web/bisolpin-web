@@ -92,7 +92,7 @@ class CustomAuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email',
-            'password' => 'required|min:6',
+            'password' => 'required|min:6|confirmed',
         ]);
 
         $username = explode('@', $request->email)[0] . rand(100, 999);
@@ -102,7 +102,7 @@ class CustomAuthController extends Controller
             'username' => $username,
             'email' => $request->email,
             'password' => $request->password,
-            'password_confirmation' => $request->password,
+            'password_confirmation' => $request->password_confirmation,
         ]);
 
         if ($response->status() === 201 || $response->successful()) {
@@ -112,8 +112,7 @@ class CustomAuthController extends Controller
 
         if ($response->status() === 422) {
             $errors = $response->json('errors');
-            $firstError = \Illuminate\Support\Arr::first($errors)[0] ?? 'Validasi gagal.';
-            return redirect()->back()->with('error', $firstError)->withInput();
+            return redirect()->back()->withErrors($errors)->withInput();
         }
 
         return redirect()->back()->with('error', $response->json('message') ?? 'Terjadi kesalahan saat registrasi.')->withInput();

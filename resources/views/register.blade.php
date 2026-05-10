@@ -63,6 +63,15 @@
                             @if(session('error'))
                                 <div class="alert alert-danger">{{ session('error') }}</div>
                             @endif
+                            @if($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul class="mb-0">
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <form action="{{route('register.custom')}}" method="POST" class="mb-3 pb-3">
                                 @csrf
                                 <div class="mb-3 position-relative">
@@ -96,7 +105,7 @@
                                 <div class="mb-3 position-relative">
                                     <label class="form-label">Confirm Password <span class="text-danger"> *</span></label>
                                     <div class="position-relative">
-                                        <input type="password" class="pass-inputa form-control form-control-lg">
+                                        <input type="password" name="password_confirmation" class="pass-inputa form-control form-control-lg" required minlength="6">
                                         <span class="isax toggle-passworda isax-eye-slash text-gray-7 fs-14"></span>
                                     </div>
                                 </div>
