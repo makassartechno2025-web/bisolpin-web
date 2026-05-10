@@ -1,4 +1,4 @@
-﻿
+
 @if(Route::is(['index','index-2','index-5','index-rtl']))
     <!-- Header -->
     <header class="header-one">
@@ -53,6 +53,8 @@
                 </div>
             </div>
         </div>
+    </header>
+    <!-- /Header -->
 @endif
 
 @if(Route::is(['index-6']))
