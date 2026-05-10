@@ -39,9 +39,9 @@ class AdminController extends Controller
         $latestArticles     = Article::latest()->take(5)->get();
         $latestTestimonials = Testimonial::latest()->take(5)->get();
 
-        // Chart: Articles per month (last 6 months) - SQLite compatible
+        // Chart: Articles per month (last 6 months) - MySQL compatible
         $articleChart = Article::select(
-                DB::raw("strftime('%Y-%m', created_at) as month_key"),
+                DB::raw("DATE_FORMAT(created_at, '%Y-%m') as month_key"),
                 DB::raw('count(*) as total')
             )
             ->where('created_at', '>=', now()->subMonths(5)->startOfMonth())

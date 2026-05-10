@@ -11,12 +11,11 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Dreams LMS is a powerful Learning Management System template designed for educators, training institutions, and businesses. Manage courses, track student progress, conduct virtual classes, and enhance e-learning experiences with an intuitive and feature-rich platform.">
-		<meta name="keywords" content="LMS template, Learning Management System, e-learning software, online course platform, student management, education portal, virtual classroom, training management system, course tracking, online education">
-		<meta name="author" content="Dreams Technologies">
-		<meta name="robots" content="index, follow">
+		<meta name="description" content="Bisolpin adalah platform bimbingan belajar praktis, efisien, dan komprehensif. Dapatkan layanan les privat, kursus IT, dan edukasi terbaik.">
+		<meta name="keywords" content="bisolpin, bimbingan belajar, les privat, kursus online, edukasi">
+		<meta name="author" content="Bisolpin">
 		
-		<title>Dreams LMS | Advanced Learning Management System Template</title>
+		<title>Bisolpin | Bimbingan Belajar Praktis & Komprehensif</title>
 
     @include('layout.partials.head')
 </head>
