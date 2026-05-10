@@ -28199,27 +28199,25 @@ textarea:focus {
     background-color: #1BA89C !important;
 }
 
-/* ── Fixed header-one offset ─────────────────────────────── */
-/* header-one is position:fixed (~80px tall).
-   All inner pages need padding-top so content isn't hidden under it. */
-.main-wrapper {
-    padding-top: 80px;
-}
-/* Home / index pages already handle their own spacing via hero section */
-body:has(.banner-section) .main-wrapper {
-    padding-top: 0 !important;
-}
+/* ═══════════════════════════════════════════════════════════════
+   FIXED HEADER OFFSET  —  header-one is position:fixed (~80px)
+   ═══════════════════════════════════════════════════════════════ */
 
-/* ── Breadcrumb / Hero bars for inner pages ──────────────── */
+/* ─── BREADCRUMB / HERO BARS ─────────────────────────────────
+   padding-top = navbar height (80px) + breathing room (30px)
+   ──────────────────────────────────────────────────────────── */
 .breadcrumb-bar {
-    padding: 50px 0 !important;
-    min-height: 150px;
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, #1BA89C 0%, #0d7a71 100%);
+    padding-top: 110px !important;
+    padding-bottom: 50px !important;
+    min-height: 200px !important;
+    background: linear-gradient(135deg, #1BA89C 0%, #0d7a71 100%) !important;
+    position: relative;
+    overflow: visible !important;
 }
 .breadcrumb-bar .container {
     width: 100%;
+    position: relative;
+    z-index: 2;
 }
 .breadcrumb-bar .breadcrumb-list,
 .breadcrumb-bar .breadcrumb-content {
@@ -28231,6 +28229,7 @@ body:has(.banner-section) .main-wrapper {
     font-weight: 700 !important;
     font-size: 2rem !important;
     margin-bottom: 8px !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 .breadcrumb-bar p {
     color: rgba(255,255,255,0.88) !important;
@@ -28250,6 +28249,24 @@ body:has(.banner-section) .main-wrapper {
 }
 .breadcrumb-bar .breadcrumb-item + .breadcrumb-item::before {
     color: rgba(255,255,255,0.6) !important;
+}
+
+/* ─── HOME PAGE banner ────────────────────────────────────── */
+.banner-section {
+    padding-top: 100px !important;
+}
+
+/* ─── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 767.98px) {
+    .breadcrumb-bar {
+        padding-top: 90px !important;
+        padding-bottom: 36px !important;
+        min-height: 160px !important;
+    }
+    .breadcrumb-bar .breadcrumb-title,
+    .breadcrumb-bar h2 {
+        font-size: 1.6rem !important;
+    }
 }
 .header-one.header-fixed, .header-two.header-fixed, .header.header-fixed {
     background-color: #1BA89C !important;
