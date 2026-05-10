@@ -26,7 +26,7 @@
         /* Sidebar */
         .admin-sidebar {
             width: 260px;
-            min-height: 100vh;
+            height: 100vh;
             background: var(--admin-sidebar);
             position: fixed;
             top: 0; left: 0;
