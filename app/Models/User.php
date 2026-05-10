@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -23,11 +22,61 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'phone',
+        'avatar',
+        'bio',
+        'status',
     ];
+
+    // ── Role Helpers ──────────────────────────────────────
 
     public function isAdmin(): bool
     {
         return $this->role === 'admin';
+    }
+
+    public function isSiswa(): bool
+    {
+        return $this->role === 'siswa';
+    }
+
+    public function isGuru(): bool
+    {
+        return $this->role === 'guru';
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === 'active';
+    }
+
+    public function isSuspended(): bool
+    {
+        return $this->status === 'suspended';
+    }
+
+    // ── Scopes ────────────────────────────────────────────
+
+    public function scopeByRole($query, string $role)
+    {
+        return $query->where('role', $role);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'active');
+    }
+
+    // ── Relations ─────────────────────────────────────────
+
+    public function tutorProfile()
+    {
+        return $this->hasOne(TutorProfile::class);
+    }
+
+    public function bookingsAsStudent()
+    {
+        return $this->hasMany(Booking::class, 'student_id');
     }
 
     /**

@@ -567,6 +567,10 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\TutorController;
+use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\LesPrivatController;
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -578,6 +582,31 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('faqs', FaqController::class)->names('admin.faqs');
     Route::get('settings', [SettingController::class, 'index'])->name('admin.settings');
     Route::post('settings', [SettingController::class, 'update'])->name('admin.settings.update');
+
+    // User Management
+    Route::resource('users', UserController::class)->names('admin.users');
+    Route::patch('users/{user}/toggle-status', [UserController::class, 'toggleStatus'])->name('admin.users.toggle-status');
+
+    // Tutor Management (Les Privat)
+    Route::resource('tutors', TutorController::class)->names('admin.tutors');
+    Route::patch('tutors/{tutor}/toggle-availability', [TutorController::class, 'toggleAvailability'])->name('admin.tutors.toggle-availability');
+
+    // Booking Management
+    Route::get('bookings', [BookingController::class, 'index'])->name('admin.bookings.index');
+    Route::get('bookings/{booking}', [BookingController::class, 'show'])->name('admin.bookings.show');
+    Route::patch('bookings/{booking}/status', [BookingController::class, 'updateStatus'])->name('admin.bookings.update-status');
+});
+
+// ============================================================
+// PUBLIC LES PRIVAT ROUTES
+// ============================================================
+Route::get('/les-privat', [LesPrivatController::class, 'index'])->name('les-privat');
+Route::get('/les-privat/{id}', [LesPrivatController::class, 'show'])->name('les-privat.show');
+
+// Auth-required les privat routes
+Route::middleware('auth')->group(function () {
+    Route::post('/les-privat/{id}/book', [LesPrivatController::class, 'storeBooking'])->name('les-privat.book');
+    Route::post('/les-privat/review', [LesPrivatController::class, 'storeReview'])->name('les-privat.review');
 });
 
 // Public events page
@@ -585,3 +614,4 @@ Route::get('/events', function () {
     $events = \App\Models\Event::where('is_published', true)->orderBy('event_date')->get();
     return view('events', compact('events'));
 })->name('events');
+

@@ -223,6 +223,19 @@
         <i class="fas fa-question-circle"></i> FAQ
     </a>
 
+    <div class="nav-section">User</div>
+    <a href="{{ route('admin.users.index') }}" class="nav-link {{ Request::is('admin/users*') ? 'active' : '' }}">
+        <i class="fas fa-users-cog"></i> Kelola User
+    </a>
+
+    <div class="nav-section">Les Privat</div>
+    <a href="{{ route('admin.tutors.index') }}" class="nav-link {{ Request::is('admin/tutors*') ? 'active' : '' }}">
+        <i class="fas fa-chalkboard-teacher"></i> Guru Privat
+    </a>
+    <a href="{{ route('admin.bookings.index') }}" class="nav-link {{ Request::is('admin/bookings*') ? 'active' : '' }}">
+        <i class="fas fa-calendar-check"></i> Booking
+    </a>
+
     <div class="nav-section">Sistem</div>
     <a href="{{ route('admin.settings') }}" class="nav-link {{ Request::is('admin/settings*') ? 'active' : '' }}">
         <i class="fas fa-cog"></i> Pengaturan

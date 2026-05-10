@@ -28,6 +28,11 @@
         <a href="{{ url('events') }}">Event</a>
     </li>
 
+    {{-- Les Privat --}}
+    <li class="{{ Request::is('les-privat*') ? 'active' : '' }}">
+        <a href="{{ url('les-privat') }}">Les Privat</a>
+    </li>
+
     {{-- Karir --}}
     <li>
         <a href="{{ url('/') }}#karir">Karir</a>

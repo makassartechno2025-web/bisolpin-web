@@ -8,6 +8,8 @@ use App\Models\Article;
 use App\Models\Testimonial;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\TutorProfile;
+use App\Models\Booking;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -25,6 +27,11 @@ class AdminController extends Controller
             'published_articles' => Article::where('is_published', true)->count(),
             'users'              => User::count(),
             'admin_users'        => User::where('role', 'admin')->count(),
+            'guru_users'         => User::where('role', 'guru')->count(),
+            'siswa_users'        => User::where('role', 'siswa')->count(),
+            'tutors'             => TutorProfile::count(),
+            'bookings'           => Booking::count(),
+            'bookings_pending'   => Booking::where('status', 'pending')->count(),
         ];
 
         $latestCourses      = Course::latest()->take(5)->get();
