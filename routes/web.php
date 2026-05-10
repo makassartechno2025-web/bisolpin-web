@@ -415,8 +415,14 @@ return view('blog-right-sidebar');
 })->name('blog-right-sidebar');
 
 Route::get('/contact-us', function () {
-return view('contact-us');
+    $settings = \App\Models\SiteSetting::whereIn('key', [
+        'contact_address', 'contact_phone', 'contact_email',
+        'social_facebook', 'social_instagram', 'social_youtube',
+    ])->pluck('value', 'key');
+    return view('contact-us', compact('settings'));
 })->name('contact-us');
+
+Route::post('/contact-us', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 
 Route::get('/course-resume', function () {
 return view('course-resume');
@@ -553,8 +559,9 @@ return view('student-certificates');
 })->name('student-certificates');
 
 Route::get('/about-us', function () {
-    return view('about-us');
-    })->name('about-us');
+    $settings = \App\Models\SiteSetting::pluck('value', 'key');
+    return view('about-us', compact('settings'));
+})->name('about-us');
 
 // ============================================================
 // ADMIN ROUTES - Protected by auth + admin middleware
