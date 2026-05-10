@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 /****** Utils ******/
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 :root {
@@ -28197,6 +28197,59 @@ textarea:focus {
 /* --- Navbar --- */
 .header-one, .header-two, .header-three, .header-five {
     background-color: #1BA89C !important;
+}
+
+/* ── Fixed header-one offset ─────────────────────────────── */
+/* header-one is position:fixed (~80px tall).
+   All inner pages need padding-top so content isn't hidden under it. */
+.main-wrapper {
+    padding-top: 80px;
+}
+/* Home / index pages already handle their own spacing via hero section */
+body:has(.banner-section) .main-wrapper {
+    padding-top: 0 !important;
+}
+
+/* ── Breadcrumb / Hero bars for inner pages ──────────────── */
+.breadcrumb-bar {
+    padding: 50px 0 !important;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #1BA89C 0%, #0d7a71 100%);
+}
+.breadcrumb-bar .container {
+    width: 100%;
+}
+.breadcrumb-bar .breadcrumb-list,
+.breadcrumb-bar .breadcrumb-content {
+    text-align: center;
+}
+.breadcrumb-bar .breadcrumb-title,
+.breadcrumb-bar h2 {
+    color: #fff !important;
+    font-weight: 700 !important;
+    font-size: 2rem !important;
+    margin-bottom: 8px !important;
+}
+.breadcrumb-bar p {
+    color: rgba(255,255,255,0.88) !important;
+    margin-bottom: 0;
+}
+.breadcrumb-bar .breadcrumb {
+    justify-content: center;
+    margin-bottom: 0;
+}
+.breadcrumb-bar .breadcrumb-item,
+.breadcrumb-bar .breadcrumb-item a {
+    color: rgba(255,255,255,0.85) !important;
+    font-size: 14px;
+}
+.breadcrumb-bar .breadcrumb-item.active {
+    color: #fff !important;
+}
+.breadcrumb-bar .breadcrumb-item + .breadcrumb-item::before {
+    color: rgba(255,255,255,0.6) !important;
 }
 .header-one.header-fixed, .header-two.header-fixed, .header.header-fixed {
     background-color: #1BA89C !important;
