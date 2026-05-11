@@ -38,6 +38,11 @@
         <a href="{{ url('karir') }}">Karir</a>
     </li>
 
+    {{-- Promo --}}
+    <li class="{{ Request::is('promo') ? 'active' : '' }}">
+        <a href="{{ url('/') }}#promo">Promo</a>
+    </li>
+
     {{-- Blog --}}
     <li class="{{ Request::is('blog-grid', 'blog-details', 'blog-list', 'blog-2-grid', 'blog-3-grid') ? 'active' : '' }}">
         <a href="{{ url('blog-grid') }}">Blog</a>

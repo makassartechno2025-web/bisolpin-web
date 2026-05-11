@@ -235,6 +235,54 @@
         </section>
         <!-- /Layanan -->
 
+        <!-- Promo Spesial -->
+        <section id="promo" class="promo-section" style="padding:80px 0; background-color:#f9fcfc;">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <span class="badge" style="background:#e8f8f6;color:#1BA89C;padding:8px 16px;font-size:14px;border-radius:20px;">
+                        🎉 PROMO SPESIAL UNTUK ANDA!
+                    </span>
+                    <h2 class="mt-3 fw-bold" style="color:#f39c12;">BISOLPIN Hadir dengan Promo Spesial!</h2>
+                    <p class="text-muted mx-auto" style="max-width:700px;font-size:16px;">
+                        Jika Anda mendaftar sebelum <strong>1 Mei 2026</strong>, Anda akan menjadi salah satu dari <strong>1000 member pertama</strong> yang akan mendapatkan hadiah menarik dari BISOLPIN!
+                    </p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="card border-0 shadow-lg" style="border-radius:20px;overflow:hidden;">
+                            <div class="row g-0 align-items-center">
+                                <div class="col-md-5 p-5 text-center" style="background:linear-gradient(135deg,#1BA89C,#0d7a71);">
+                                    <i class="fas fa-gift fa-5x text-warning mb-3"></i>
+                                    <h3 class="text-white fw-bold mb-0">HADIAH MENARIK!</h3>
+                                </div>
+                                <div class="col-md-7 p-5">
+                                    <ul class="list-unstyled mb-0">
+                                        <li class="mb-3 d-flex align-items-center">
+                                            <i class="fas fa-check-circle text-success fs-4 me-3"></i> 
+                                            <span style="font-size:18px;font-weight:600;">Power Bank</span>
+                                        </li>
+                                        <li class="mb-3 d-flex align-items-center">
+                                            <i class="fas fa-check-circle text-success fs-4 me-3"></i> 
+                                            <span style="font-size:18px;font-weight:600;">Kipas Portable</span>
+                                        </li>
+                                        <li class="mb-4 d-flex align-items-center">
+                                            <i class="fas fa-check-circle text-success fs-4 me-3"></i> 
+                                            <span style="font-size:18px;font-weight:600;">Produk Elektronik Lainnya</span>
+                                        </li>
+                                    </ul>
+                                    <a href="{{ url('register') }}" class="btn btn-warning fw-bold px-4 py-2" style="border-radius:10px;">
+                                        Klaim Promo Sekarang <i class="fas fa-arrow-right ms-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Promo Spesial -->
+
         <!-- Login/Register CTA -->
         <section class="trust-sec">
             <div class="container">
