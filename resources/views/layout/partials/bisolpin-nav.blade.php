@@ -13,7 +13,7 @@
                 <a href="{{ url('about-us') }}">Tentang</a>
             </li>
             <li>
-                <a href="{{ url('/') }}#kemitraan">Kemitraan</a>
+                <a href="{{ url('kemitraan') }}">Kemitraan</a>
             </li>
         </ul>
     </li>
@@ -34,8 +34,8 @@
     </li>
 
     {{-- Karir --}}
-    <li>
-        <a href="{{ url('/') }}#karir">Karir</a>
+    <li class="{{ Request::is('karir') ? 'active' : '' }}">
+        <a href="{{ url('karir') }}">Karir</a>
     </li>
 
     {{-- Blog --}}

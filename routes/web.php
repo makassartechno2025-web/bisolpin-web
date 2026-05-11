@@ -622,3 +622,11 @@ Route::get('/events', function () {
     return view('events', compact('events'));
 })->name('events');
 
+Route::get('/karir', function () {
+    return view('karir');
+})->name('karir');
+
+Route::get('/kemitraan', function () {
+    return view('kemitraan');
+})->name('kemitraan');
+

@@ -185,7 +185,7 @@
                 <div class="section-header text-center">
                     <span class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block">Layanan Kami</span>
                     <h2>Kami Berfokus pada Teknologi dan Pembelajaran Inovatif</h2>
-                    <p>Misi kami adalah memberdayakan peserta dengan pengetahuan, keterampilan, dan pola pikir yang dibutuhkan untuk sukses. Kami percaya bahwa pendidikan lebih dari sekadar akademisâ€”pendidikan adalah tentang membentuk individu yang berkarakter, percaya diri, dan seimbang.</p>
+                    <p>Misi kami adalah memberdayakan peserta dengan pengetahuan, keterampilan, dan pola pikir yang dibutuhkan untuk sukses. Kami percaya bahwa pendidikan lebih dari sekadar akademis - pendidikan adalah tentang membentuk individu yang berkarakter, percaya diri, dan seimbang.</p>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-md-6">
