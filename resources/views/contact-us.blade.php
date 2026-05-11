@@ -36,54 +36,54 @@
             <div class="col-md-4">
                 <div class="card h-100 border-0 text-center text-white" style="background:#1BA89C; border-radius:16px;">
                     <div class="card-body p-4">
-                        <i class="fas fa-map-marker-alt fa-2x mb-3 text-white-50"></i>
-                        <h6 class="fw-bold mb-2">Alamat</h6>
-                        <p class="mb-0 small opacity-75">JL. M.H. Thamrin No. 20 8,<br>Gondangdia, Menteng, Jakarta Pusat,<br>Tower Lippo Thamrin</p>
+                        <i class="fas fa-map-marker-alt fa-2x mb-3 text-white"></i>
+                        <h6 class="fw-bold mb-2 text-white">Alamat</h6>
+                        <p class="mb-0 small text-white">JL. M.H. Thamrin No. 20 8,<br>Gondangdia, Menteng, Jakarta Pusat,<br>Tower Lippo Thamrin</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card h-100 border-0 text-center text-white" style="background:#1BA89C; border-radius:16px;">
                     <div class="card-body p-4">
-                        <i class="fas fa-envelope fa-2x mb-3 text-white-50"></i>
-                        <h6 class="fw-bold mb-2">Email</h6>
-                        <p class="mb-0 small"><a href="mailto:info@bisolpin.com" class="text-white text-decoration-none opacity-75">info@bisolpin.com</a></p>
+                        <i class="fas fa-envelope fa-2x mb-3 text-white"></i>
+                        <h6 class="fw-bold mb-2 text-white">Email</h6>
+                        <p class="mb-0 small"><a href="mailto:info@bisolpin.com" class="text-white text-decoration-none">info@bisolpin.com</a></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card h-100 border-0 text-center text-white" style="background:#1BA89C; border-radius:16px;">
                     <div class="card-body p-4">
-                        <i class="fab fa-whatsapp fa-2x mb-3 text-white-50"></i>
-                        <h6 class="fw-bold mb-2">WhatsApp</h6>
-                        <p class="mb-0 small"><a href="https://wa.me/62895322534471" class="text-white text-decoration-none opacity-75">0895 3225 34471</a></p>
+                        <i class="fab fa-whatsapp fa-2x mb-3 text-white"></i>
+                        <h6 class="fw-bold mb-2 text-white">WhatsApp</h6>
+                        <p class="mb-0 small"><a href="https://wa.me/62895322534471" class="text-white text-decoration-none">0895 3225 34471</a></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card h-100 border-0 text-center text-white" style="background:#1BA89C; border-radius:16px;">
                     <div class="card-body p-4">
-                        <i class="fab fa-instagram fa-2x mb-3 text-white-50"></i>
-                        <h6 class="fw-bold mb-2">Instagram</h6>
-                        <p class="mb-0 small"><a href="https://instagram.com/bisolpin" class="text-white text-decoration-none opacity-75">@bisolpin</a></p>
+                        <i class="fab fa-instagram fa-2x mb-3 text-white"></i>
+                        <h6 class="fw-bold mb-2 text-white">Instagram</h6>
+                        <p class="mb-0 small"><a href="https://instagram.com/bisolpin" class="text-white text-decoration-none">@bisolpin</a></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card h-100 border-0 text-center text-white" style="background:#1BA89C; border-radius:16px;">
                     <div class="card-body p-4">
-                        <i class="fab fa-facebook-f fa-2x mb-3 text-white-50"></i>
-                        <h6 class="fw-bold mb-2">Facebook</h6>
-                        <p class="mb-0 small"><a href="https://facebook.com/bisolpin" class="text-white text-decoration-none opacity-75">fb.me/bisolpin</a></p>
+                        <i class="fab fa-facebook-f fa-2x mb-3 text-white"></i>
+                        <h6 class="fw-bold mb-2 text-white">Facebook</h6>
+                        <p class="mb-0 small"><a href="https://facebook.com/bisolpin" class="text-white text-decoration-none">fb.me/bisolpin</a></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card h-100 border-0 text-center text-white" style="background:#1BA89C; border-radius:16px;">
                     <div class="card-body p-4">
-                        <i class="fab fa-tiktok fa-2x mb-3 text-white-50"></i>
-                        <h6 class="fw-bold mb-2">TikTok</h6>
-                        <p class="mb-0 small"><a href="https://tiktok.com/@bisolpin" class="text-white text-decoration-none opacity-75">@bisolpin</a></p>
+                        <i class="fab fa-tiktok fa-2x mb-3 text-white"></i>
+                        <h6 class="fw-bold mb-2 text-white">TikTok</h6>
+                        <p class="mb-0 small"><a href="https://tiktok.com/@bisolpin" class="text-white text-decoration-none">@bisolpin</a></p>
                     </div>
                 </div>
             </div>
