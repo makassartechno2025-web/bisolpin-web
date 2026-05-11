@@ -332,44 +332,18 @@
                     <p>Ikuti berbagai event dan kegiatan menarik yang kami selenggarakan</p>
                 </div>
                 <div class="top-courses-slider lazy">
+                    @foreach($events as $event)
                     <div>
                         <div class="categories-item categories-item-three mb-0">
                             <img class="mx-auto" src="{{URL::asset('build/img/category/icons/icon-6.svg')}}" alt="img">
-                            <h6 class="title"><a href="#">Workshop Peningkatan Skill Dalam Bidang Komputer Dan Bisnis Digital</a></h6>
+                            <h6 class="title"><a href="#">{{ $event->title }}</a></h6>
                         </div>
                     </div>
-                    <div>
-                        <div class="categories-item categories-item-three mb-0">
-                            <img class="mx-auto" src="{{URL::asset('build/img/category/icons/icon-7.svg')}}" alt="img">
-                            <h6 class="title"><a href="#">Workshop Pemanfaatan AI Bagi Guru Dalam Dunia Pendidikan</a></h6>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="categories-item categories-item-three mb-0">
-                            <img class="mx-auto" src="{{URL::asset('build/img/category/icons/icon-8.svg')}}" alt="img">
-                            <h6 class="title"><a href="#">BISOLPIN mengadakan Try Out Dan Bimbingan Belajar Gratis</a></h6>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="categories-item categories-item-three mb-0">
-                            <img class="mx-auto" src="{{URL::asset('build/img/category/icons/icon-9.svg')}}" alt="img">
-                            <h6 class="title"><a href="#">Pelatihan Public Speaking</a></h6>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="categories-item categories-item-three mb-0">
-                            <img class="mx-auto" src="{{URL::asset('build/img/category/icons/icon-6.svg')}}" alt="img">
-                            <h6 class="title"><a href="#">Workshop UI/UX Design</a></h6>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="categories-item categories-item-three mb-0">
-                            <img class="mx-auto" src="{{URL::asset('build/img/category/icons/icon-7.svg')}}" alt="img">
-                            <h6 class="title"><a href="#">Seminar Kewirausahaan</a></h6>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-                <a href="#" class="btn btn-primary btn-md">Lihat Semua Event</a>
+                <div class="text-center mt-4">
+                    <a href="{{ url('events') }}" class="btn btn-primary btn-md">Lihat Semua Event</a>
+                </div>
             </div>
         </section>
         <!-- /Event -->
@@ -387,36 +361,35 @@
                         <div class="how-it-works-content aos" data-aos="fade-up">
                             <div class="section-header">
                                 <span class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block">Peluang Karir</span>
-                                <h2 class="mb-1">Peluang Karir di Bisolpin</h2>
-                                <p>Bergabunglah bersama kami untuk menciptakan dampak positif bagi komunitas dan dunia pendidikan.</p>
+                                <h2 class="mb-1">Bersama BISOLPIN, Kembangkan Potensimu!</h2>
+                                <p>Kami percaya bahwa setiap individu memiliki potensi untuk menciptakan perubahan. Di BISOLPIN, kamu akan menemukan lingkungan kerja kolaboratif, peluang belajar tanpa batas, dan kesempatan berkarier di dunia pendidikan digital yang sedang berkembang pesat.</p>
                             </div>
                             <div class="d-flex align-items-center works-items">
-                                <span class="count">01</span>
+                                <span class="count"><i class="fas fa-check text-white"></i></span>
                                 <div>
-                                    <h5 class="mb-1">Kirim CV & Portofolio</h5>
-                                    <p>Kirimkan CV dan portofolio terbaikmu melalui halaman karir kami.</p>
+                                    <h5 class="mb-1">Gaji Kompetitif</h5>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center works-items">
-                                <span class="count">02</span>
+                                <span class="count"><i class="fas fa-check text-white"></i></span>
                                 <div>
-                                    <h5 class="mb-1">Proses Seleksi</h5>
-                                    <p>Tim HR kami akan meninjau dan menghubungi kandidat yang sesuai.</p>
+                                    <h5 class="mb-1">Kesempatan Belajar & Berkembang</h5>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center works-items">
-                                <span class="count">03</span>
+                                <span class="count"><i class="fas fa-check text-white"></i></span>
                                 <div>
-                                    <h5 class="mb-1">Interview</h5>
-                                    <p>Ikuti sesi interview untuk menunjukkan kemampuan terbaikmu.</p>
+                                    <h5 class="mb-1">Lingkungan Kerja Dinamis</h5>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center works-items mb-0 pb-0 border-0">
-                                <span class="count">04</span>
+                                <span class="count"><i class="fas fa-check text-white"></i></span>
                                 <div>
-                                    <h5 class="mb-1">Bergabung!</h5>
-                                    <p>Selamat! Mulai perjalanan karirmu bersama tim Bisolpin.</p>
+                                    <h5 class="mb-1">Membuat Perbedaan Nyata</h5>
                                 </div>
+                            </div>
+                            <div class="mt-4">
+                                <a href="{{ url('karir') }}" class="btn btn-primary">Lihat Lowongan</a>
                             </div>
                         </div>
                     </div>

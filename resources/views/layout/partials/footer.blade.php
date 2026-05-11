@@ -1,4 +1,4 @@
-﻿    
+    
     
 
         @if(Route::is(['index','index-rtl']))
@@ -60,13 +60,13 @@
 									<h5 class="footer-title">Kontak Kami</h5>
 									<div class="footer-contact-info">
 										<div class="footer-address">
-											<p><i class="isax isax-location text-secondary me-2"></i> JL. M.H. Thamrin No 20 8, Gondangdia, Kec. Menteng, Jakarta Pusat, Tower Lippo Thamrin</p>
+											<p><i class="isax isax-location text-secondary me-2"></i> {{ $globalSettings['contact_address'] ?? 'JL. M.H. Thamrin No 20 8, Gondangdia, Kec. Menteng, Jakarta Pusat, Tower Lippo Thamrin' }}</p>
 										</div>
 										<div class="footer-address mt-3">
-											<p><i class="isax isax-message text-secondary me-2"></i> info@bisolpin.com</p>
+											<p><i class="isax isax-message text-secondary me-2"></i> {{ $globalSettings['contact_email'] ?? 'info@bisolpin.com' }}</p>
 										</div>
 										<div class="footer-address mt-3">
-											<p><i class="isax isax-call text-secondary me-2"></i> +62 812-3456-7890</p>
+											<p><i class="isax isax-call text-secondary me-2"></i> {{ $globalSettings['contact_phone'] ?? '+62 812-3456-7890' }}</p>
 										</div>
 									</div>	
 								</div>

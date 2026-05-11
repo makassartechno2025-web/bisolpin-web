@@ -22,5 +22,15 @@ class AppServiceProvider extends ServiceProvider
         if (env('APP_ENV') !== 'local') {
             URL::forceScheme('https');
         }
+
+        try {
+            // Only try to share settings if DB is available
+            if (\Illuminate\Support\Facades\Schema::hasTable('site_settings')) {
+                $globalSettings = \App\Models\SiteSetting::pluck('value', 'key')->toArray();
+                \Illuminate\Support\Facades\View::share('globalSettings', $globalSettings);
+            }
+        } catch (\Exception $e) {
+            // Ignore DB errors during deployment/migrations
+        }
     }
 }
